@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -g
 SRC = main.cc
 OUT = main
-GTK = $(shell pkg-config gtkmm-3.0 --cflags --libs)
+#GTK = $(shell pkg-config gtkmm-3.0 --cflags --libs)
 
 all: $(OUT)
 	@echo "Building $(OUT)..."
