@@ -48,4 +48,5 @@ int main(int argc, char* argv[])
     MyWindow window;
 
     return app->run(window);
+
 }
