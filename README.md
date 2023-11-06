@@ -1,4 +1,4 @@
-# C++ GTK3 應用程式開發
+# GTK3 Simpledit Video Editor
 
 ![](./image/thumbnail.png)
 
