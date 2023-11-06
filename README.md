@@ -1,14 +1,14 @@
 # C++ GTK3 應用程式開發
 
-## Dependency安裝
+![](./image/thumbnail.png)
 
-### gtkmm
+## Build Dependency
+- build-essential
+- make
+- gtkmm-3.0
+- ffmpeg
 
-```sh
-sudo apt-get install libgtkmm-3.0-dev
+## Build
 ```
-
-## 建置並執行
-```sh
-make
+./build.sh
 ```
