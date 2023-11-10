@@ -5,59 +5,11 @@ processes user input
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "fx.cpp"
+#include "interface.h"
+#include "action.h"
 // included header files
 #define CLS std::system("clear")
-// declared macros
-class Interface
-{
-private:
-    fx *dx;
 
-public:
-    Interface();
-    // class constructor
-    ~Interface();
-    // class destructor
-    void menu();
-    // displays main menu
-    void boot();
-    // invokes functions based on user input
-    void changeselection();
-    // changes active selection
-    bool validstr(std::string &);
-    // checks if the string is valid
-    void extractframe();
-    // extracts image frames from video
-    void extractaudio();
-    // extract audio clips from video
-    void extractclip();
-    // exctracts video clips
-    void splitvideo();
-    // splits video file
-    void convertvideo();
-    // converts video into another type
-    void getgif();
-    // converts video into .gif types
-    void concat();
-    // concates video clips
-    void overlayaudio();
-    // adds audio channel
-    void overlaysub();
-    // overlays subtitle
-    void mute();
-    // mutes audio
-    void omission();
-    // omits a clip segment
-    void vSpeed();
-    // changes the video speed
-    void vRes();
-    // changes the video resolution
-    void vVol();
-    // changes the video volume
-    void vBitrate();
-    // changes the video bitrate
-};
 // class definations
 Interface::Interface()
 {
@@ -65,18 +17,18 @@ Interface::Interface()
     std::string fname;
     std::cout << "enter source filename :";
     std::cin >> fname;
-    dx = new fx(fname);
+    interface = new Action(fname);
     CLS;
 }
 Interface::~Interface()
 {
     // class destructor
-    delete dx;
+    delete interface;
 }
 void Interface::menu()
 {
     // displays main menu
-    std::cout << " current file :" << dx->getfname() << std::endl;
+    std::cout << " current file :" << interface->getfname() << std::endl;
     std::cout << "================================================" << std::endl;
     std::cout << "0\texit video editor" << std::endl;
     std::cout << "1\textract image frame" << std::endl;
@@ -96,7 +48,7 @@ void Interface::menu()
     std::cout << "15\toverlay subtitle" << std::endl;
     std::cout << "16\tpick another video file" << std::endl;
     std::cout << "================================================" << std::endl;
-    std::cout << " current file :" << dx->getfname() << std::endl;    
+    std::cout << " current file :" << interface->getfname() << std::endl;    
     std::cout << "================================================" << std::endl;
 }
 void Interface::boot()
@@ -200,7 +152,7 @@ void Interface::changeselection()
         std::cin >> fname;
     } while (!validstr(fname));
     // sets the filepath
-    dx->setfname(fname);
+    interface->setfname(fname);
 }
 void Interface::extractframe()
 {
@@ -219,8 +171,8 @@ void Interface::extractframe()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs extract frame operation
-    dx->extractFrame(seektime, height, width, ofilepath);
-    dx->exec(ofilepath);
+    interface->extractFrame(seektime, height, width, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::extractaudio()
 {
@@ -237,8 +189,8 @@ void Interface::extractaudio()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation based on parameters
-    dx->extractAudio(seektime, bitrate, ofilepath);
-    dx->exec(ofilepath);
+    interface->extractAudio(seektime, bitrate, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::extractclip()
 {
@@ -255,8 +207,8 @@ void Interface::extractclip()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operations
-    dx->extractClip(seektime, duration, ofilepath);
-    dx->exec(ofilepath);
+    interface->extractClip(seektime, duration, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::splitvideo()
 {
@@ -276,9 +228,9 @@ void Interface::splitvideo()
         std::cin >> ofilepath2;
     } while (!validstr(ofilepath2));
     // performs file operations
-    dx->splitVideo(splitseek, ofilepath1, ofilepath2);
-    dx->exec(ofilepath1);
-    dx->exec(ofilepath2);
+    interface->splitVideo(splitseek, ofilepath1, ofilepath2);
+    interface->exec(ofilepath1);
+    interface->exec(ofilepath2);
 }
 void Interface::convertvideo()
 {
@@ -291,9 +243,9 @@ void Interface::convertvideo()
     std::cout << "enter audio codec";
     std::cin >> acodec;
     // perform operation
-    dx->convertVideo(extn, vcodec, acodec);
-    std::string ofilepath = dx->getfname() + extn;
-    dx->exec(ofilepath);
+    interface->convertVideo(extn, vcodec, acodec);
+    std::string ofilepath = interface->getfname() + extn;
+    interface->exec(ofilepath);
 }
 void Interface::getgif()
 {
@@ -315,8 +267,8 @@ void Interface::getgif()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->getGif(seektime, duration, height, width, ofilepath, framerate);
-    dx->exec(ofilepath);
+    interface->getGif(seektime, duration, height, width, ofilepath, framerate);
+    interface->exec(ofilepath);
 }
 void Interface::concat()
 {
@@ -331,7 +283,7 @@ void Interface::concat()
     // prepare inputlist
     std::ofstream fout("inputlist.txt", std::ios::ate | std::ios::out);
     std::cout << "enter filenames:" << std::endl;
-    int i;
+    int i = 0;
     do
     {
         std::cin >> fpath;
@@ -341,8 +293,8 @@ void Interface::concat()
     std::cout << "joining " << i << " files";
     fout.close();
     // performs operation
-    dx->concat(ofilepath);
-    dx->exec(ofilepath);
+    interface->concat(ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::overlayaudio()
 {
@@ -359,8 +311,8 @@ void Interface::overlayaudio()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // perform operations
-    dx->overlayAudio(audfile, ofilepath);
-    dx->exec(ofilepath);
+    interface->overlayAudio(audfile, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::overlaysub()
 {
@@ -377,8 +329,8 @@ void Interface::overlaysub()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->overlaySub(subfile, vcodec, ofilepath);
-    dx->exec(ofilepath);
+    interface->overlaySub(subfile, vcodec, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::mute()
 {
@@ -390,8 +342,8 @@ void Interface::mute()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->muteAudio(ofilepath);
-    dx->exec(ofilepath);
+    interface->muteAudio(ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::omission()
 {
@@ -408,8 +360,8 @@ void Interface::omission()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->omitClip(seektime_ini, seektime_fn, ofilepath);
-    dx->exec(ofilepath);
+    interface->omitClip(seektime_ini, seektime_fn, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::vSpeed()
 {
@@ -425,8 +377,8 @@ void Interface::vSpeed()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->setSpeed(ofilepath, speed);
-    dx->exec(ofilepath);
+    interface->setSpeed(ofilepath, speed);
+    interface->exec(ofilepath);
 }
 void Interface::vRes()
 {
@@ -443,8 +395,8 @@ void Interface::vRes()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->setRes(height, width, ofilepath);
-    dx->exec(ofilepath);
+    interface->setRes(height, width, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::vVol()
 {
@@ -459,8 +411,8 @@ void Interface::vVol()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->setVol(vol, ofilepath);
-    dx->exec(ofilepath);
+    interface->setVol(vol, ofilepath);
+    interface->exec(ofilepath);
 }
 void Interface::vBitrate()
 {
@@ -475,21 +427,6 @@ void Interface::vBitrate()
         std::cin >> ofilepath;
     } while (!validstr(ofilepath));
     // performs operation
-    dx->setBitrate(bitrate, ofilepath);
-    dx->exec(ofilepath);
+    interface->setBitrate(bitrate, ofilepath);
+    interface->exec(ofilepath);
 }
-/*
-int main()
-{
-    // main function for interface
-    // doesn't trigger environment setup - runs without admin priv
-    std::system("ffmpeg -loglevel quiet");
-    // creates interface object
-    Interface io;
-    // starts the interface
-    io.boot();
-    // resets the environment
-    std::system("ffmpeg -loglevel info");
-    CLS;
-}
-*/
