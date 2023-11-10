@@ -8,7 +8,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/main",
+            "program": "${workspaceFolder}/Simpledit",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
