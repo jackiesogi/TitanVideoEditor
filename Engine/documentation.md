@@ -1,20 +1,52 @@
 # Documentation
-- [Action Class](#action-class)
-  - [Constructor](#constructor)
-  - [Action::exec()](#void-execstdstring-arg)
-  - [Action::extractFrame()](#void-extractframestdstring-seektime-stdstring-height-stdstring-width-stdstring-ofilepath)
-  - [Action::extractAudio()](#void-extractaudiostdstring-seektime-stdstring-bitrate-stdstring-ofilepath)
-  - [Action::extractClip()](#void-extractclipstdstring-seektime-stdstring-duration-stdstring-ofilepath)
-  - [Action::splitVideo()](#void-splitvideostdstring-splitseek-stdstring-ofilepath1-stdstring-ofilepath2)
-  - [Action::concat()](#void-concatstdstring-ofilepath)
-  - [Action::getfilename()](#stdstring-getfilename)
-  - [Action::setfilename()](#void-setfilenamestdstring-filename)
-  - [Action::setBitrate](#void-setbitratestdstring-bitrate-stdstring-ofilepath)
-  - [Action::muteAudio()](#void-muteaudiostdstring-ofilepath)
-  - [Action::omitClip()](#void-omitclipstdstring-seektime_ini-stdstring-seektime_fn-stdstring-ofilepath)
-  - [Action::setSpeed()](#void-setspeedstdstring-ofilepath-double-speed)
-  - [Action::setRes()](#void-setresstdstring-height-stdstring-width-stdstring-ofilepath)
-  - [Action::setVol()](#void-setvolstdstring-vol-stdstring-ofilepath)
+---
+- [Documentation](#documentation)
+  - [`Action` Class](#action-class)
+      - [`Action(std::string &filename)`](#actionstdstring-filename)
+        - [Description](#description)
+        - [Parameter](#parameter)
+        - [Return Value](#return-value)
+        - [Example](#example)
+      - [`void exec(std::string &arg)`](#void-execstdstring-arg)
+      - [`void extractFrame(std::string &seektime, std::string &height, std::string &width, std::string &ofilepath)`](#void-extractframestdstring-seektime-stdstring-height-stdstring-width-stdstring-ofilepath)
+      - [`void extractAudio(std::string &seektime, std::string &bitrate, std::string &ofilepath)`](#void-extractaudiostdstring-seektime-stdstring-bitrate-stdstring-ofilepath)
+        - [Description](#description-1)
+        - [Parameters](#parameters)
+      - [`void extractClip(std::string &seektime, std::string &duration, std::string &ofilepath)`](#void-extractclipstdstring-seektime-stdstring-duration-stdstring-ofilepath)
+        - [Description](#description-2)
+        - [Parameters](#parameters-1)
+      - [`void splitVideo(std::string &splitseek, std::string &ofilepath1, std::string &ofilepath2)`](#void-splitvideostdstring-splitseek-stdstring-ofilepath1-stdstring-ofilepath2)
+        - [Description](#description-3)
+        - [Parameters](#parameters-2)
+      - [`void concat(std::string &ofilepath)`](#void-concatstdstring-ofilepath)
+        - [Description](#description-4)
+        - [Parameters](#parameters-3)
+      - [`std::string getfilename()`](#stdstring-getfilename)
+        - [Description](#description-5)
+        - [Return Value](#return-value-1)
+      - [`void setfilename(std::string filename)`](#void-setfilenamestdstring-filename)
+        - [Description](#description-6)
+        - [Parameters](#parameters-4)
+      - [`void setBitrate(std::string &bitrate, std::string &ofilepath)`](#void-setbitratestdstring-bitrate-stdstring-ofilepath)
+        - [Description](#description-7)
+        - [Parameters](#parameters-5)
+      - [`void muteAudio(std::string &ofilepath)`](#void-muteaudiostdstring-ofilepath)
+        - [Description](#description-8)
+        - [Parameters](#parameters-6)
+      - [`void omitClip(std::string &seektime_ini, std::string &seektime_fn, std::string &ofilepath)`](#void-omitclipstdstring-seektime_ini-stdstring-seektime_fn-stdstring-ofilepath)
+        - [Description](#description-9)
+        - [Parameters](#parameters-7)
+      - [`void setSpeed(std::string &ofilepath, double speed)`](#void-setspeedstdstring-ofilepath-double-speed)
+        - [Description](#description-10)
+        - [Parameters](#parameters-8)
+      - [`void setRes(std::string &height, std::string &width, std::string &ofilepath)`](#void-setresstdstring-height-stdstring-width-stdstring-ofilepath)
+        - [Description](#description-11)
+        - [Parameters](#parameters-9)
+      - [`void setVol(std::string &vol, std::string &ofilepath)`](#void-setvolstdstring-vol-stdstring-ofilepath)
+        - [Description](#description-12)
+        - [Parameters](#parameters-10)
+
+---
 
 ## `Action` Class
 #### `Action(std::string &filename)`
@@ -115,8 +147,6 @@ Sets the filename of the video to be processed.
 | Parameter   | Description                               |
 |-------------|-------------------------------------------|
 | `filename`  | New filename for the video to be processed. |
-
-// ... (Repeat the structure for remaining functions)
 
 
 #### `void setBitrate(std::string &bitrate, std::string &ofilepath)`
