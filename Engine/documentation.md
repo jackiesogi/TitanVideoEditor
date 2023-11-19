@@ -1,6 +1,9 @@
 # Documentation
+
+Content
 ---
 - [Documentation](#documentation)
+  - [Content](#content)
   - [`Action` Class](#action-class)
       - [`Action(std::string &filename)`](#actionstdstring-filename)
         - [Description](#description)
@@ -113,8 +116,6 @@ Splits the video into two parts at a specified time.
 | `splitseek`   | Time in the video to split it into two parts.      |
 | `ofilepath1`  | Output file path for the first split video.        |
 | `ofilepath2`  | Output file path for the second split video.       |
-
-// ... (Repeat the structure for each function)
 
 
 #### `void concat(std::string &ofilepath)`
