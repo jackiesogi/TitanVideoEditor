@@ -13,17 +13,17 @@ interacts with the library
 class Action
 {
 private:
-    std::string fname;
+    std::string filename;
     // holds filepath
 public:
     // class constructor
-    Action(std::string &fname);
-    // returns fname
-    std::string getfname();
-    // sets fname
-    void setfname(std::string fname);
+    Action(std::string &filename);
+    // returns filename
+    std::string getfilename();
+    // sets filename
+    void setfilename(std::string filename);
     // plays file
-    void exec(std::string &fname);
+    void exec(std::string &filename);
     // performs extract frame operation
     void extractFrame(std::string &seektime, std::string &height, std::string &width, std::string &ofilepath);
     // performs extract audio operation
@@ -54,6 +54,8 @@ public:
     void setVol(std::string &vol, std::string &ofilepath);
     // changes video bitrate
     void setBitrate(std::string &bitrate, std::string &ofilepath);
+
+    // rescale the video size
 };
 
 #endif // ACTION_H 
