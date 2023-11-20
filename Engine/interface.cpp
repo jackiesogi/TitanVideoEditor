@@ -28,7 +28,7 @@ Interface::~Interface()
 void Interface::menu()
 {
     // displays main menu
-    std::cout << " current file :" << interface->getfname() << std::endl;
+    std::cout << " current file :" << interface->getfilename() << std::endl;
     std::cout << "================================================" << std::endl;
     std::cout << "0\texit video editor" << std::endl;
     std::cout << "1\textract image frame" << std::endl;
@@ -48,7 +48,7 @@ void Interface::menu()
     std::cout << "15\toverlay subtitle" << std::endl;
     std::cout << "16\tpick another video file" << std::endl;
     std::cout << "================================================" << std::endl;
-    std::cout << " current file :" << interface->getfname() << std::endl;    
+    std::cout << " current file :" << interface->getfilename() << std::endl;    
     std::cout << "================================================" << std::endl;
 }
 void Interface::boot()
@@ -152,7 +152,7 @@ void Interface::changeselection()
         std::cin >> fname;
     } while (!validstr(fname));
     // sets the filepath
-    interface->setfname(fname);
+    interface->setfilename(fname);
 }
 void Interface::extractframe()
 {
@@ -172,7 +172,7 @@ void Interface::extractframe()
     } while (!validstr(ofilepath));
     // performs extract frame operation
     interface->extractFrame(seektime, height, width, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::extractaudio()
 {
@@ -190,7 +190,7 @@ void Interface::extractaudio()
     } while (!validstr(ofilepath));
     // performs operation based on parameters
     interface->extractAudio(seektime, bitrate, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::extractclip()
 {
@@ -208,7 +208,7 @@ void Interface::extractclip()
     } while (!validstr(ofilepath));
     // performs operations
     interface->extractClip(seektime, duration, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::splitvideo()
 {
@@ -229,8 +229,8 @@ void Interface::splitvideo()
     } while (!validstr(ofilepath2));
     // performs file operations
     interface->splitVideo(splitseek, ofilepath1, ofilepath2);
-    interface->exec(ofilepath1);
-    interface->exec(ofilepath2);
+    interface->play(ofilepath1);
+    interface->play(ofilepath2);
 }
 void Interface::convertvideo()
 {
@@ -244,8 +244,8 @@ void Interface::convertvideo()
     std::cin >> acodec;
     // perform operation
     interface->convertVideo(extn, vcodec, acodec);
-    std::string ofilepath = interface->getfname() + extn;
-    interface->exec(ofilepath);
+    std::string ofilepath = interface->getfilename() + extn;
+    interface->play(ofilepath);
 }
 void Interface::getgif()
 {
@@ -268,7 +268,7 @@ void Interface::getgif()
     } while (!validstr(ofilepath));
     // performs operation
     interface->getGif(seektime, duration, height, width, ofilepath, framerate);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::concat()
 {
@@ -294,7 +294,7 @@ void Interface::concat()
     fout.close();
     // performs operation
     interface->concat(ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::overlayaudio()
 {
@@ -312,7 +312,7 @@ void Interface::overlayaudio()
     } while (!validstr(ofilepath));
     // perform operations
     interface->overlayAudio(audfile, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::overlaysub()
 {
@@ -330,7 +330,7 @@ void Interface::overlaysub()
     } while (!validstr(ofilepath));
     // performs operation
     interface->overlaySub(subfile, vcodec, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::mute()
 {
@@ -343,7 +343,7 @@ void Interface::mute()
     } while (!validstr(ofilepath));
     // performs operation
     interface->muteAudio(ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::omission()
 {
@@ -361,7 +361,7 @@ void Interface::omission()
     } while (!validstr(ofilepath));
     // performs operation
     interface->omitClip(seektime_ini, seektime_fn, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::vSpeed()
 {
@@ -378,7 +378,7 @@ void Interface::vSpeed()
     } while (!validstr(ofilepath));
     // performs operation
     interface->setSpeed(ofilepath, speed);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::vRes()
 {
@@ -396,7 +396,7 @@ void Interface::vRes()
     } while (!validstr(ofilepath));
     // performs operation
     interface->setRes(height, width, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::vVol()
 {
@@ -412,7 +412,7 @@ void Interface::vVol()
     } while (!validstr(ofilepath));
     // performs operation
     interface->setVol(vol, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
 void Interface::vBitrate()
 {
@@ -428,5 +428,5 @@ void Interface::vBitrate()
     } while (!validstr(ofilepath));
     // performs operation
     interface->setBitrate(bitrate, ofilepath);
-    interface->exec(ofilepath);
+    interface->play(ofilepath);
 }
