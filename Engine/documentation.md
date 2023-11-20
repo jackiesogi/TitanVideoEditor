@@ -32,7 +32,7 @@ run `buildLibrary.sh`
 ```
 When compile your code with `"simplEngine/action.h"`, please add...
 ```sh
-g++ -o ${your_output} ${your_input.cpp} -L. laction
+g++ -o ${your_output} ${your_input.cpp} -L. -laction
 ```
 
 ## `Action` Class
