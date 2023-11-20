@@ -30,7 +30,7 @@ run `buildLibrary.sh`
 ```sh
 ./buildLibrary.sh
 ```
-When compile your code with `"action.h"`, please add...
+When compile your code with `"simplEngine/action.h"`, please add...
 ```sh
 g++ -o ${your_output} ${your_input.cpp} -L. laction
 ```
@@ -52,7 +52,7 @@ Constructor of the `Action` class, with a given video file name as `filename`, i
 |`filename`|Directory of the video going to process,<br>it can be either a absolute path or relative path.|
 ##### Example
 ```c++
-#include "Egnine/action.h"
+#include "simplEngine/action.h"
 
 int main()
 {
@@ -77,7 +77,7 @@ Note that it is redirect to `ffplay` command, so you can still pass the argument
 |`arg`|The options you specify when you play the source video.(See `man ffplay`)|
 ##### Example
 ```c++
-#include "Egnine/action.h"
+#include "simplEngine/action.h"
 
 int main()
 {
