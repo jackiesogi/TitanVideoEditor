@@ -5,8 +5,8 @@
   - [play](#play) -- Play the given source video
   - [extractFrame](#extractframe) -- Extract a frame at a specific time point from the video.
   - [extractAudio](#extractaudio) -- Extracts an independent audio track
-  - [extractClip -- Extracts a clip from the video ](#extractclip)
-  - [splitVideo -- Splits the video into two parts](#splitvideo)
+  - [extractClip](#extractclip) -- Extracts a clip from the video 
+  - [splitVideo](#splitvideo) -- Splits the video into two parts
   - [overlayAudio](#overlayaudio) -- 
   - [overlaySub](#overlaysub) -- 
   - [convertVideo](#convertvideo) -- Convert video's format and codec.
@@ -25,6 +25,7 @@
 
 
 #### Constructor
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 Action(std::string &filename)
@@ -48,6 +49,7 @@ int main()
 
 
 #### play
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void play(std::string &arg)
@@ -58,7 +60,7 @@ Note that it is redirect to `ffplay` command, so you can still pass the argument
 ##### Parameter
 |Parameter|Description|
 |-|-|
-|`arg`|A source file or a source file with options.(See `man ffplay`)|
+|`arg`|The options you specify when you play the source video.(See `man ffplay`)|
 ##### Example
 ```c++
 #include "Egnine/action.h"
@@ -73,6 +75,7 @@ int main()
 
 
 #### extractFrame
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void extractFrame( std::string &seektime,
@@ -87,6 +90,7 @@ Extract a frame at a specific time point from the video.
 
 
 #### extractAudio
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void extractAudio( std::string &seektime,
@@ -106,6 +110,7 @@ Extracts an independent audio track from the video at a specific time with a spe
 
 
 #### extractClip
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void extractClip( std::string &seektime,
@@ -125,6 +130,7 @@ Extracts a clip from the video starting at a specified time for a defined durati
 
 
 #### splitVideo
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void splitVideo( std::string &splitseek,
@@ -146,6 +152,7 @@ Splits the video into two parts at a specified time.
 
 
 #### overlayAudio
+[[back to top]](#documentation)
 ##### Protype
 ```c++
 void Action::overlayAudio( std::string &audiofile,
@@ -157,6 +164,7 @@ void Action::overlayAudio( std::string &audiofile,
 
 
 #### overlaySub
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void Action::overlaySub( std::string &subfile,
@@ -169,6 +177,7 @@ void Action::overlaySub( std::string &subfile,
 
 
 #### convertVideo
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void Action::convertVideo( std::string &extn,
@@ -181,6 +190,7 @@ Convert video's format and codec.
 ##### Example
 
 #### getGif
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void Action::getGif( std::string &seektime,
@@ -197,6 +207,7 @@ Generate a gif from a given video.
 
 
 #### concat
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void concat(std::string &ofilepath)
@@ -211,6 +222,7 @@ Concatenates multiple video files listed in `inputlist.txt` into a single video 
 ##### Example
 
 #### getfilename
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 std::string getfilename()
@@ -223,6 +235,7 @@ String containing the filename of the video.
 
 
 #### setfilename
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void setfilename(std::string filename)
@@ -237,6 +250,7 @@ Sets the filename of the video to be processed.
 
 
 #### setBitrate
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void setBitrate( std::string &bitrate,
@@ -253,6 +267,7 @@ Sets the bitrate of the video.
 
 
 #### muteAudio
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void muteAudio(std::string &ofilepath)
@@ -267,6 +282,7 @@ Mutes the audio of the video.
 
 
 #### omitClip
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void omitClip( std::string &seektime_ini,
@@ -285,6 +301,7 @@ Omits a section of the video between two specified times.
 
 
 #### setSpeed
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void setSpeed(std::string &ofilepath, double speed)
@@ -300,6 +317,7 @@ Adjusts the playback speed of the video.
 
 
 #### setRes
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void setRes( std::string &height,
@@ -318,6 +336,7 @@ Sets the resolution of the video.
 
 
 #### setVol
+[[back to top]](#documentation)
 ##### Prototype
 ```c++
 void setVol( std::string &vol,
