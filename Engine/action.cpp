@@ -12,7 +12,7 @@ interacts with the library
 Action::Action(std::string &filename)
     : filename(filename) {}
 
-void Action::exec(std::string &arg)
+void Action::play(std::string &arg)
 {
     system(("ffplay " + arg).c_str());
 }

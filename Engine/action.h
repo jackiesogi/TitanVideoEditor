@@ -23,7 +23,7 @@ public:
     // sets filename
     void setfilename(std::string filename);
     // plays file
-    void exec(std::string &filename);
+    void play(std::string &filename);
     // performs extract frame operation
     void extractFrame(std::string &seektime, std::string &height, std::string &width, std::string &ofilepath);
     // performs extract audio operation
