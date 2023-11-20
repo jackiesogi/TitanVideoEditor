@@ -9,12 +9,12 @@ interacts with the library
 // included headers
 
 // class definations
-Action::Action(std::string &filename)
+Action::Action(std::string filename)
     : filename(filename) {}
 
-void Action::play(std::string &arg)
+void Action::play(std::string arg)
 {
-    system(("ffplay " + arg).c_str());
+    system(("ffplay " + arg + " " + this->filename).c_str());
 }
 
 void Action::extractFrame(std::string &seektime, std::string &height, std::string &width, std::string &ofilepath)
@@ -54,7 +54,7 @@ void Action::getGif(std::string &seektime, std::string &duration, std::string &h
     system(("ffmpeg -i " + this->filename + " -ss " + seektime + " -vf scale=" + height + ":" + width + " -t " + duration + " -r " + framerate + " " + ofilepath).c_str());
 }
 
-void Action::concat(std::string &ofilepath)
+void Action::concat(std::string ofilepath)
 {
     system(("ffmpeg -f concat -i inputlist.txt -c copy " + ofilepath).c_str());
 }

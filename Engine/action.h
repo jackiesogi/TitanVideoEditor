@@ -17,13 +17,13 @@ private:
     // holds filepath
 public:
     // class constructor
-    Action(std::string &filename);
+    Action(std::string filename);
     // returns filename
     std::string getfilename();
     // sets filename
     void setfilename(std::string filename);
     // plays file
-    void play(std::string &filename);
+    void play(std::string arg = " ");
     // performs extract frame operation
     void extractFrame(std::string &seektime, std::string &height, std::string &width, std::string &ofilepath);
     // performs extract audio operation
@@ -41,7 +41,7 @@ public:
     // performs gif convert operation
     void getGif(std::string &seektime, std::string &duration, std::string &height, std::string &width, std::string &ofilepath, std::string &framerate);
     // concates files
-    void concat(std::string &ofilepath);
+    void concat(std::string ofilepath);
     // mutes audio channel
     void muteAudio(std::string &ofilepath);
     // omits clip segment
