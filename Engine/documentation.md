@@ -7,8 +7,8 @@
   - [extractAudio](#extractaudio) -- Extracts an independent audio track
   - [extractClip](#extractclip) -- Extracts a clip from the video 
   - [splitVideo](#splitvideo) -- Splits the video into two parts
-  - [overlayAudio](#overlayaudio) -- 
-  - [overlaySub](#overlaysub) -- 
+  - [overlayAudio](#overlayaudio) -- Overlays audio onto the video file.
+  - [overlaySub](#overlaysub) -- Overlays subtitles onto the video file.
   - [convertVideo](#convertvideo) -- Convert video's format and codec.
   - [getGif](#getgif) -- Generate a gif from a given video.
   - [concat](#concat) -- Concatenates multiple video files listed in
@@ -174,8 +174,28 @@ void Action::overlayAudio( std::string &audiofile,
                            std::string &ofilepath )
 ```
 ##### Description
+Overlays audio onto the video file.
 ##### Parameter
+| Parameter     | Description                                               |
+|---------------|-----------------------------------------------------------|
+| `audiofile`   | Audio file to be overlaid onto the video.                 |
+| `ofilepath`   | Output file path to save the video with overlaid audio.   |
 ##### Example
+```c++
+#include <iostream>
+#include <string>
+#include "simplEngine/action.h"
+
+int main() {
+
+  std::string audioPath = "audio.mp3";
+  std::string outputPath = "video_with_audio.mp4";
+  Action *a1 = new Action("video_without_audio.mp4");
+  a1->overlayAudio(audioPath, outputPath);
+
+  return 0;
+}
+```
 
 
 #### overlaySub
@@ -187,10 +207,30 @@ void Action::overlaySub( std::string &subfile,
                          std::string &ofilepath )
 ```
 ##### Description
+Overlays subtitles onto the video file.
 ##### Parameter
+| Parameter     | Description                                                  |
+|---------------|--------------------------------------------------------------|
+| `subfile`     | Subtitle file to be overlaid onto the video.                 |
+| `vcodec`      | Video codec for the overlayed subtitles.                     |
+| `ofilepath`   | Output file path to save the video with overlaid subtitles.  |
 ##### Example
+```c++
+#include <iostream>
+#include <string>
+#include "simplEngine/action.h"
 
+int main() {
 
+  std::string subtitlePath = "subtitle.srt";
+  std::string codec = "copy";   // "copy" means follow the original video
+  std::string outputPath = "video_with_subtitles.mp4";
+  Action *a1 = new Action("video.mp4");
+  a1->overlaySub(subtitlePath, codec, outputPath);
+
+  return 0;
+}
+```
 #### convertVideo
 [[back to top]](#documentation)
 ##### Prototype
