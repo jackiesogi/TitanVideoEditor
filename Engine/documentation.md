@@ -1,5 +1,5 @@
 # Documentation
-
+- [Installation]
 - [`Action` Class](#action-class)
   - [Action](#constructor) -- Constructor of the `Action` class
   - [play](#play) -- Play the given source video
@@ -21,6 +21,20 @@
   - [setRes](#setres) -- Sets the resolution of the video.
   - [setVol](#setvol) -- Adjusts the volume level of the video
 
+## Installation
+navigate to ./lib
+```sh
+cd lib
+```
+run `buildLibrary.sh`
+```sh
+./buildLibrary.sh
+```
+When compile your code with `"action.h"`, please add...
+```sh
+g++ -o ${your_output} ${your_input.cpp} -L. laction
+```
+
 ## `Action` Class
 
 
@@ -28,7 +42,7 @@
 [[back to top]](#documentation)
 ##### Prototype
 ```c++
-Action(std::string &filename)
+Action(std::string filename)
 ```
 ##### Description
 Constructor of the `Action` class, with a given video file name as `filename`, it constructs an instance of a `Action` class, which can be used to do a range of operation afterward, for example, extract frame from at specific time, extract an independent audio track.
@@ -42,7 +56,7 @@ Constructor of the `Action` class, with a given video file name as `filename`, i
 
 int main()
 {
-    Action *a1 = new Action("Hello_world_Video.mp4");
+    Action a1("Hello_world_Video.mp4");
     return 0;
 }
 ```
@@ -52,7 +66,7 @@ int main()
 [[back to top]](#documentation)
 ##### Prototype
 ```c++
-void play(std::string &arg)
+void play(std::string arg)
 ```
 ##### Description
 Play the given source video.
@@ -67,8 +81,9 @@ Note that it is redirect to `ffplay` command, so you can still pass the argument
 
 int main()
 {
-    Action *a1 = new Action("Hello_world_Video.mp4");
-    a1.play("-nodisp")
+    Action example("example.mp4");
+    example.play();           // it will pop up a window and play example.mp4.
+    example.play("-nodisp");  // it will play the audio only.
     return 0;
 }
 ```
@@ -210,7 +225,7 @@ Generate a gif from a given video.
 [[back to top]](#documentation)
 ##### Prototype
 ```c++
-void concat(std::string &ofilepath)
+void concat(std::string ofilepath)
 ```
 ##### Description
 Concatenates multiple video files listed in `inputlist.txt` into a single video file.
