@@ -150,6 +150,31 @@ SDL_Surface* CreateSdlSurfaceFromPng(void* data)
         delete[] rowData;
         break;
     }
+
+    case PNG_COLOR_TYPE_RGB:
+    {
+        auto bytesPerRow = png_get_rowbytes(png, info);
+        auto rowData = new uint8_t[bytesPerRow];
+        for (size_t y = 0; y < height; y++)
+        {
+            png_read_row(png, rowData, nullptr);
+
+            for (size_t x = 0; x < width; x++)
+            {
+                auto red = rowData[x * 3];
+                auto green = rowData[x * 3 + 1];
+                auto blue = rowData[x * 3 + 2];
+
+                pixels[x * 4 + bytesPerRow * y] = red;
+                pixels[x * 4 + bytesPerRow * y + 1] = green;
+                pixels[x * 4 + bytesPerRow * y + 2] = blue;
+                pixels[x * 4 + bytesPerRow * y + 3] = 255;  // 设置 alpha 通道为不透明
+            }
+    }
+        delete[] rowData;
+        break;
+    }
+
     default:
         printf("invalid color type: %d\n", colorType);
         exit(1);

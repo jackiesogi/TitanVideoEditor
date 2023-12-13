@@ -19,6 +19,7 @@ extern SDL_Texture* icon_down;
 extern SDL_Texture* icon_magnet;
 extern SDL_Texture* icon_play;
 extern SDL_Texture* icon_pause;
+extern SDL_Texture* icon_hanni;
 extern SDL_Texture* icon_up;
 extern SDL_Texture* icon_video;
 extern SDL_Texture* icon_render;

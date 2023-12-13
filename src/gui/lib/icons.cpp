@@ -18,6 +18,7 @@ SDL_Texture* icon_down = nullptr;
 SDL_Texture* icon_magnet = nullptr;
 SDL_Texture* icon_play = nullptr;
 SDL_Texture* icon_pause = nullptr;
+SDL_Texture* icon_hanni = nullptr;
 SDL_Texture* icon_up = nullptr;
 SDL_Texture* icon_video = nullptr;
 SDL_Texture* icon_render = nullptr;
@@ -39,6 +40,7 @@ void init_icons(SDL_Renderer* renderer) {
     icon_magnet = create_texture(renderer, images_magnet_png);
     icon_play = create_texture(renderer, images_play_png);
     icon_pause = create_texture(renderer, images_pause_png);
+    icon_hanni = create_texture(renderer, images_hanni_png);
     icon_up = create_texture(renderer, images_up_png);
     icon_video = create_texture(renderer, images_video_png);
     icon_render = create_texture(renderer, images_render_png);
