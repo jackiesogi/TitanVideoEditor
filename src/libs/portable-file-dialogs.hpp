@@ -1441,7 +1441,7 @@ inline std::string internal::file_dialog::select_folder_vista(IFileDialog *ifd, 
     }
 
     // Set the dialog title and option to select folders
-    ifd->SetOptions(FOS_PICKFOLDERS | FOS_FORCEFILESYSTEM);
+    ifd->SetOptions(FOS_PICKFOLDERS | FOS_FORCEfilesystem);
     ifd->SetTitle(m_wtitle.c_str());
 
     hr = ifd->Show(GetActiveWindow());
@@ -1452,7 +1452,7 @@ inline std::string internal::file_dialog::select_folder_vista(IFileDialog *ifd, 
         if (SUCCEEDED(hr))
         {
             wchar_t* wname = nullptr;
-            // This is unlikely to fail because we use FOS_FORCEFILESYSTEM, but try
+            // This is unlikely to fail because we use FOS_FORCEfilesystem, but try
             // to output a debug message just in case.
             if (SUCCEEDED(item->GetDisplayName(SIGDN_FILESYSPATH, &wname)))
             {

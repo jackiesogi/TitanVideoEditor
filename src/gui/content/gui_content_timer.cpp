@@ -46,6 +46,18 @@ void gui_content_timer(SDL_Renderer* renderer, int x, int y, int w, int h) {
     if (button_icon(renderer, timeline_locking ? icon_magnet : icon_no_magnet, x + 4 + 20 + 4 + 20 + 4, y + 4, 16, 16, 0x404040FF)) {
         timeline_locking = !timeline_locking;
     }
+    //new
+    button_tooltip("wwwwwwwwwwww");
+     if (button_icon(renderer, icon_play, x + 4 + 20 + 4 + 20 + 4+4 + 20 + 4, y + 4, 16, 16, 0x404040FF)) {
+        Track track;
+        track.clips = {};
+        track.type = TRACKTYPE_AUDIO;
+        tracks.push_back(track);
+    }
+///
+
+
+    
     for (int i = timer_scroll; i < tracks.size(); i++) {
         render_rect(renderer, 2, 24 + (i - timer_scroll) * 32 + 2, w - 4, 28, 0x303030FF);
         render_texture(renderer, tracks[i].type == TRACKTYPE_AUDIO ? icon_sound : icon_video, 9, 24 + (i - timer_scroll) * 32 + 7, 16, 16);

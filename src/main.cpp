@@ -1,6 +1,7 @@
 #include "main.hpp"
 
 #include <SDL2/SDL.h>
+#include<SDL2/SDL_image.h>
 #include <chrono>
 #include <thread>
 #include <iostream>
@@ -16,6 +17,8 @@
 #include "utils.hpp"
 
 #include "libs/portable-file-dialogs.hpp"
+//#include"gui/lib/helper.hpp"
+
 
 int mouseX;
 int mouseY;
@@ -38,6 +41,9 @@ std::vector<SDL_Keycode> heldKeys = {};
 std::vector<SDL_Keycode> pressedKeys = {};
 
 std::string tooltip = "";
+
+SDL_Texture* buttonTexture =nullptr;
+SDL_Rect buttonRect;
 
 bool is_key_pressed(SDL_Keycode code) {
     return std::find(pressedKeys.begin(), pressedKeys.end(), code) != pressedKeys.end();
@@ -127,23 +133,47 @@ int main(int argc, char** argv) {
     if (check_ffmpeg()) return 1;
     SDL_Window* window = SDL_CreateWindow("Titan Video Editor - Alpha", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     SDL_SetWindowResizable(window, SDL_TRUE);
+    
     currentWindow = window;
+    
     Uint32 render_flags = SDL_RENDERER_ACCELERATED;
+    
+    
+    
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, render_flags);
     init_cursors();
     init_icons(renderer);
+
+    // SDL_Surface* buttonSurface=IMG_Load("push.png");
+    // buttonTexture=SDL_CreateTextureFromSurface(renderer,buttonSurface);
+    // SDL_FreeSurface(buttonSurface);
+
+    // int tw, th;
+	// SDL_QueryTexture(buttonTexture, NULL, NULL, &tw, &th);
+
+	// scale texture size down
+	// tw /= 6;
+	// th /= 6;
+	// //	set button destination rect centered on screen
+	// //x		    y		    w	h
+	// SDL_Rect Texture_dst_rect = {30, 30, tw, th};
+
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+    
     while (true) {
         clock_t before = clock();
         if (update()) break;
         render(renderer);
         SDL_SetCursor(next_cursor);
         SDL_RenderPresent(renderer);
+        SDL_RenderCopy(renderer,buttonTexture,NULL,&buttonRect);
         clock_t after = clock();
         if (after - before < CLOCKS_PER_SEC / 60) std::this_thread::sleep_for(std::chrono::microseconds((int)(1000000 / 60.0f - (float)(after - before) / CLOCKS_PER_SEC * 1000000)));
     }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    SDL_DestroyTexture(buttonTexture);
     SDL_Quit();
     return 0;
 }
