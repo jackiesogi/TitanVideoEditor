@@ -17,7 +17,7 @@
 #include "utils.hpp"
 
 #include "libs/portable-file-dialogs.hpp"
-//#include"gui/lib/helper.hpp"
+
 
 
 int mouseX;
@@ -139,24 +139,9 @@ int main(int argc, char** argv) {
     Uint32 render_flags = SDL_RENDERER_ACCELERATED;
     
     
-    
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, render_flags);
     init_cursors();
     init_icons(renderer);
-
-    // SDL_Surface* buttonSurface=IMG_Load("push.png");
-    // buttonTexture=SDL_CreateTextureFromSurface(renderer,buttonSurface);
-    // SDL_FreeSurface(buttonSurface);
-
-    // int tw, th;
-	// SDL_QueryTexture(buttonTexture, NULL, NULL, &tw, &th);
-
-	// scale texture size down
-	// tw /= 6;
-	// th /= 6;
-	// //	set button destination rect centered on screen
-	// //x		    y		    w	h
-	// SDL_Rect Texture_dst_rect = {30, 30, tw, th};
 
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 

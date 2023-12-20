@@ -10,9 +10,11 @@ set(SOURCES
 	src/gui/render_util.cpp
 	src/gui/content/gui_content_file_browser.cpp
 	src/gui/content/gui_content_player.cpp
+	src/gui/content/gui_content_player_utils.cpp
 	src/gui/content/gui_content_properties.cpp
 	src/gui/content/gui_content_timeline.cpp
 	src/gui/content/gui_content_timer.cpp
+	src/gui/content/gui_content_render.cpp
 	src/gui/lib/cursors.cpp
 	src/gui/lib/icons.cpp
 	src/gui/lib/images.cpp

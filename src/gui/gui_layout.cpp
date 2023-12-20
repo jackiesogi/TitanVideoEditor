@@ -98,6 +98,13 @@ void render_gui(SDL_Renderer* renderer) {
             if (mousePressed) grabbedSplitter = &gui_splitters[i];
             next_cursor = (splitter.isVertical ? cursor_move_vertical : cursor_move_horizontal);
         }
+        
+        // std::cout<<"i: "<<i<<"\n";
+        // std::cout<<"x: "<<x<<"\n";
+        // std::cout<<"y: "<<y<<"\n";
+        // std::cout<<"w: "<<w<<"\n";
+        // std::cout<<"h: "<<h<<"\n\n";
+    
     }
 }
 

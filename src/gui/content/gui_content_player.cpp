@@ -24,13 +24,13 @@ void gui_content_player(SDL_Renderer* renderer, int x, int y, int w, int h)
     // }
 
     button_tooltip("hanni");
-    if (button_icon(renderer, icon_hanni, x + 4+10, y + 4+10,200,300, 0x404040FF)) {
+    if (button_icon(renderer, icon_hanni, x + 4+10, y + 4+10,150,150, 0x404040FF)) {
         //Track track;
         //track.clips = {};
        //track.type = TRACKTYPE_VIDEO;
         //tracks.push_back(track);
     }
-
-
-
+    
 }
+
+

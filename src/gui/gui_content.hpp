@@ -34,5 +34,7 @@ extern void gui_content_file_browser(SDL_Renderer* renderer, int x, int y, int w
 extern void gui_content_player(SDL_Renderer* renderer, int x, int y, int w, int h);
 extern void gui_content_timer(SDL_Renderer* renderer, int x, int y, int w, int h);
 extern void gui_content_timeline(SDL_Renderer* renderer, int x, int y, int w, int h);
+extern void gui_content_render(SDL_Renderer* renderer, int x, int y, int w, int h);
+extern void gui_content_player_utils(SDL_Renderer* renderer, int x, int y, int w, int h);
 
 #endif
