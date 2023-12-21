@@ -217,18 +217,23 @@ void gui_content_properties(SDL_Renderer* renderer, int x, int y, int w, int h) 
     switch (properties_mode) {
         case PROPMODE_NONE_SELECTED:
             height = propmode_none_selected(renderer, x, y, w, h);
+           
             break;
         case PROPMODE_TRACK_SELECTOR:
             height = propmode_track_selector(renderer, x, y, w, h);
+            
             break;
         case PROPMODE_CLIP_SETTINGS:
             height = propmode_clip_settings(renderer, x, y, w, h);
+            
             break;
         case PROPMODE_FILTER_SELECT:
             height = propmode_filter_select(renderer, x, y, w, h);
+            
             break;
         case PROPMODE_FILTER_CONFIG:
             height = propmode_filter_config(renderer, x, y, w, h);
+            
             break;
     }
     if (mouseX >= x && mouseY >= y && mouseX < x + w && mouseY < y + h) properties_scroll += mouseScroll * 24;

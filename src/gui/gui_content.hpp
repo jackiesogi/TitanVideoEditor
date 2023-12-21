@@ -11,6 +11,7 @@ enum PropertiesMode {
     PROPMODE_CLIP_SETTINGS,
     PROPMODE_FILTER_CONFIG,
     PROPMODE_FILTER_SELECT,
+    PROPMODE_RENDER //new in render.cpp
 };
 
 extern int timer_scroll;
@@ -36,5 +37,8 @@ extern void gui_content_timer(SDL_Renderer* renderer, int x, int y, int w, int h
 extern void gui_content_timeline(SDL_Renderer* renderer, int x, int y, int w, int h);
 extern void gui_content_render(SDL_Renderer* renderer, int x, int y, int w, int h);
 extern void gui_content_player_utils(SDL_Renderer* renderer, int x, int y, int w, int h);
+//extern void gui_content_medialibrary(SDL_Renderer* renderer, int x, int y, int w, int h);
+
+
 
 #endif

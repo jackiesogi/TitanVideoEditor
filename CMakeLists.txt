@@ -15,6 +15,7 @@ set(SOURCES
 	src/gui/content/gui_content_timeline.cpp
 	src/gui/content/gui_content_timer.cpp
 	src/gui/content/gui_content_render.cpp
+	src/gui/content/gui_content_medialibrary.cpp
 	src/gui/lib/cursors.cpp
 	src/gui/lib/icons.cpp
 	src/gui/lib/images.cpp

@@ -44,11 +44,14 @@ inline float tool_splitter_pos = 0.3333f;
 inline float player_splitter_pos = 0.5f;
 inline float player_utils_splitter_pos=0.4f;
 inline float timeline_splitter_pos = 0.2f;
+//inline float library_splitter_pos = 0.3f;
+
 
 inline GuiLayoutSection gui_layout[] = {
     { gui_content_properties, CONST(0.0f), CONST(0.0f), &tool_splitter_pos, &render_splitter_pos },
     { gui_content_render,CONST(0.0f),&render_splitter_pos,&tool_splitter_pos,&main_splitter_pos },
-    { gui_content_file_browser, &tool_splitter_pos, CONST(0.0f), &player_splitter_pos, &main_splitter_pos },
+    { gui_content_file_browser, &tool_splitter_pos, CONST(0.0f), &player_splitter_pos, &main_splitter_pos},
+    //{gui_content_medialibrary,&tool_splitter_pos,&library_splitter_pos,&player_splitter_pos,&main_splitter_pos},
     { gui_content_player, &player_splitter_pos, CONST(0.0f), CONST(1.0f), &player_utils_splitter_pos },
     { gui_content_player_utils, &player_splitter_pos, &player_utils_splitter_pos, CONST(1.0f), &main_splitter_pos },
     { gui_content_timer, CONST(0.0f), &main_splitter_pos, &timeline_splitter_pos, CONST(1.0f) },
@@ -63,6 +66,7 @@ inline GuiLayoutSplitter gui_splitters[] = {
     { &player_splitter_pos, &tool_splitter_pos, CONST(1.0f), CONST(0.0f), &main_splitter_pos, false },
     //new
     { &player_utils_splitter_pos, &tool_splitter_pos, CONST(1.0f), CONST(0.0f), &main_splitter_pos, true },
+    //{&library_splitter_pos, CONST(0.0f), &player_splitter_pos, CONST(0.0f), &main_splitter_pos,true  },
     { &timeline_splitter_pos, CONST(0.0f), CONST(1.0f), &main_splitter_pos, CONST(1.0f), false },
     { &main_splitter_pos, CONST(0.0f), CONST(1.0f), CONST(0.0f), CONST(1.0f), true }
 };
