@@ -37,7 +37,7 @@ A cross platform video editing tool written in C++ designed to feel as close to 
 1. Install dependencies
    * For Debian based:<br><br>
      ```
-     sudo apt install ffmpeg git build-essential libglew-dev libsdl2-dev libpng-dev libsdl2-image-dev
+     sudo apt install ffmpeg git build-essential libglew-dev libsdl2-dev libpng-dev libsdl2-image-dev zenity -y
      ```
    * For Arch based:<br><br>
      ```
