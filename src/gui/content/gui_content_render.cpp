@@ -3,8 +3,9 @@
 #include "gui/gui_layout.hpp"
 #include "main.hpp"
 #include "gui/lib/icons.hpp"
-
+#include<stack>
 #include <iostream>
+
 
 //#include"gui_content_properties.cpp"
 
@@ -26,8 +27,14 @@ Render_render
 
 RenderMode rendermode=Render_HOMEPAGE;
 
+// std::stack<GuiLayoutSplitter> undostk; 
+
+// extern bool saveflag;
+
+
 void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
 {
+
     button_tooltip("render");
     if (button_icon(renderer, icon_render, x + 4+10, y + 4+10,40,40, 0x404040FF)) 
     {
@@ -37,11 +44,25 @@ void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
     button_tooltip("save");
     if (button_icon(renderer, icon_save, x + 4+10+30+ 20, y + 4+10,40,40, 0x404040FF)) 
     {
+        saveflag=true;
+
+        //  for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
+        //  undostk.push(gui_splitters[i]);
+        //undostk.push(grabbedSplitter);
+
+        // std::cout<<*(undostk.top().valueMin)<<"\n";
+        // std::cout<<*(undostk.top().valueMax)<<"\n";
+        // std::cout<<*(undostk.top().extendMin)<<"\n";
+        // std::cout<<*(undostk.top().extendMax)<<"\n";
+        // std::cout<<undostk.top().isVertical<<"\n";
+        // std::cout<<saveflag<<"\n";
     }
 
     button_tooltip("redo");
     if (button_icon(renderer, icon_redo, x + 4+10+20+ 20 +40+ 20, y + 4+10,40,40, 0x404040FF)) 
     {
+
+
     }
 
     button_tooltip("undo");
@@ -66,6 +87,13 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
         
     }
 
+    // button_tooltip("SplitVideo");
+    // if (button_icon(renderer,icon_extractFrame, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
+    // {
+        
+    // }
+
+
 
 }            
 
@@ -74,29 +102,6 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
 void gui_content_render(SDL_Renderer* renderer, int x, int y, int w, int h) 
 {
 
-    // button_tooltip("save");
-    // if (button_icon(renderer, icon_save, x + 4+10+30+ 20, y + 4+10,40,40, 0x404040FF)) 
-    // {
-      
-    // }
-
-    // button_tooltip("redo");
-    // if (button_icon(renderer, icon_redo, x + 4+10+20+ 20 +40+ 20, y + 4+10,40,40, 0x404040FF)) 
-    // {
-      
-    // }
-
-    // button_tooltip("undo");
-    // if (button_icon(renderer, icon_undo, x + 4+10+20+ 20 +40+ 20 +40 +20, y + 4+10,40,40, 0x404040FF)) 
-    // {
-      
-    // }
-
-    // button_tooltip("render");
-    // if (button_icon(renderer, icon_render, x + 4+10, y + 4+10,30,30, 0x404040FF)) 
-    // {
-    // //  properties_mode=PROPMODE_RENDER;
-    // }
 
     switch (rendermode) {
         case Render_HOMEPAGE:

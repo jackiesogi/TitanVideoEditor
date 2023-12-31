@@ -2,9 +2,9 @@
 #define GuiLayout_H
 
 #include <SDL2/SDL.h>
-
+#include<stack>
 #include "gui_content.hpp"
-
+//#include<stdlib.h>
 #include <string>
 
 #define CONST(value) new float(value)
@@ -36,6 +36,16 @@ struct GuiPopup {
     int h;
 };
 
+// struct temp
+// {
+//     float* pos;
+//     float* valueMin;
+//     float* valueMax;
+//     float* extendMin;
+//     float* extendMax;
+
+// };
+
 inline float main_splitter_pos = 0.5f;
 inline float render_splitter_pos =0.25f; //new
 inline float tool_splitter_pos = 0.3333f;
@@ -60,7 +70,7 @@ inline GuiLayoutSection gui_layout[] = {
 
 inline GuiLayoutSplitter gui_splitters[] = {
     //new
-    {&render_splitter_pos, CONST(0.0f), &player_splitter_pos, CONST(0.0f), &main_splitter_pos,true  },
+    {&render_splitter_pos, CONST(0.0f), &player_splitter_pos, CONST(0.0f), &main_splitter_pos,true  } ,
     
     { &tool_splitter_pos, CONST(0.0f), &player_splitter_pos, CONST(0.0f), &main_splitter_pos, false },
     { &player_splitter_pos, &tool_splitter_pos, CONST(1.0f), CONST(0.0f), &main_splitter_pos, false },
@@ -80,6 +90,10 @@ extern bool button_icon(SDL_Renderer* renderer, SDL_Texture* icon, int x, int y,
 extern bool button_icon(SDL_Renderer* renderer, SDL_Texture* icon, int x, int y, int w, int h, int color, bool locked);
 extern void open_popup(int x, int y, int w, int h, GuiWindowRenderer renderer);
 extern void close_popup();
+
+extern bool saveflag;
+
+
 
 #undef CONST
 

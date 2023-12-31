@@ -2,7 +2,6 @@
 #define GuiContent_H
 
 #include <SDL2/SDL.h>
-
 #include "editor/editor.hpp"
 
 enum PropertiesMode {
@@ -39,6 +38,6 @@ extern void gui_content_render(SDL_Renderer* renderer, int x, int y, int w, int 
 extern void gui_content_player_utils(SDL_Renderer* renderer, int x, int y, int w, int h);
 //extern void gui_content_medialibrary(SDL_Renderer* renderer, int x, int y, int w, int h);
 
-
+ 
 
 #endif
