@@ -130,6 +130,45 @@ bool check_ffmpeg() {
 }
 
 int main(int argc, char** argv) {
+    
+    SDL_Window* win=nullptr;
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " <<SDL_GetError();
+    }else
+    std::cout << "SDL video system is ready to go\n";
+
+    win = SDL_CreateWindow("C++ SDL2 Window",
+            0,
+            2500,
+            640,
+            480,
+            SDL_WINDOW_SHOWN);
+    bool quit = false;
+    SDL_Event e;
+    while (!quit) {
+        // Handle events on queue
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                quit = true;
+            }
+        }
+
+        SDL_Delay(16); // Adjust the delay based on your desired frame rate
+    }
+
+    SDL_DestroyWindow(win);
+    SDL_Quit();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if (check_ffmpeg()) return 1;
     SDL_Window* window = SDL_CreateWindow("Titan Video Editor - Alpha", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     SDL_SetWindowResizable(window, SDL_TRUE);

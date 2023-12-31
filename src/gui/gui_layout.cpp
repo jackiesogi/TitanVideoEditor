@@ -8,6 +8,28 @@
 #include <map>
 #include <utility>
 #include <iostream>
+#include<stdlib.h>
+
+
+bool saveflag=false;
+// std::stack<GuiLayoutSplitter> undostk;
+//GuiLayoutSplitter* saveArr[sizeof(gui_splitters) / sizeof(GuiLayoutSplitter)];
+struct GuiLayoutSplitter saveArr[10];
+int k=0;
+
+//struct GuiLayoutSplitter* saveArr[10];  // Declare an array of pointers
+
+// for (int i = 0; i < 10; ++i) {
+//     saveArr[i] = (struct GuiLayoutSplitter*)malloc(sizeof(struct GuiLayoutSplitter));
+//     // Check if allocation is successful
+//     if (saveArr[i] == NULL) {
+//         // Handle allocation failure
+//         // For example: printf("Memory allocation failed for saveArr[%d]\n", i);
+//         //               exit(EXIT_FAILURE);
+//     }
+// }
+
+
 
 GuiLayoutSplitter* grabbedSplitter = nullptr;
 GuiPopup* current_popup = nullptr;
@@ -71,11 +93,52 @@ void render_gui(SDL_Renderer* renderer) {
         }
         if (*grabbedSplitter->pos < limitMin) *grabbedSplitter->pos = limitMin;
         if (*grabbedSplitter->pos > limitMax) *grabbedSplitter->pos = limitMax;
+    
+
+        // std::cout<<mouseX<<"\n";
+        // std::cout<<mouseY<<"\n";
+         std::cout<<*grabbedSplitter->pos<<"\n";
+        // std::cout<<grabbedSplitter->valueMax<<"\n";
+        // std::cout<<grabbedSplitter->valueMin<<"\n";
+         //*saveArr[k]->pos=*grabbedSplitter->pos;
+        
+        // std::cout<<"k:"<<k<<" "<<"pos : "<<saveArr[k]<<"\n";
+         //k++;
     }
-    for (int i = 0; i < sizeof(gui_splitters) / sizeof(GuiLayoutSplitter); i++) {
+    for (int i = 0; i < sizeof(gui_splitters) / sizeof(GuiLayoutSplitter); i++) 
+    {
         GuiLayoutSplitter splitter = gui_splitters[i];
         float limitMin, limitMax;
         int x, y, w, h;
+
+        if(saveflag)
+        {
+            //*splitter.pos=0.5f;
+
+            switch(i)
+            {
+
+                case 0:
+                    *gui_splitters[i].pos=0.1f;
+                    std::cout<<*splitter.pos<<"\n";
+                    break;
+                case 1:
+                     *gui_splitters[i].pos=0.2f;
+                        std::cout<<*splitter.pos<<"\n";
+                    break;
+                default:
+
+                break;
+
+            }
+
+
+
+
+            // gui_splitters[i]=0.1;
+
+        }
+
         if (splitter.isVertical) {
             x = *splitter.extendMin * (windowWidth - 10) + 5;
             y = *splitter.pos * (windowHeight - 10) + 2.5f;
@@ -95,17 +158,70 @@ void render_gui(SDL_Renderer* renderer) {
         if (*splitter.pos < limitMin) *splitter.pos = limitMin;
         if (*splitter.pos > limitMax) *splitter.pos = limitMax;
         if (mouseX >= x && mouseY >= y && mouseX < x + w && mouseY < y + h) {
-            if (mousePressed) grabbedSplitter = &gui_splitters[i];
+            if (mousePressed)
+            {
+              grabbedSplitter = &gui_splitters[i];
+               // *saveArr[i]->pos=*grabbedSplitter->pos;
+            }
             next_cursor = (splitter.isVertical ? cursor_move_vertical : cursor_move_horizontal);
         }
+        //std::cout<<saveArr[i].pos<<"\n";
+        // std::cout<<*splitter.pos<<"\n";
+        //saveArr[i]->pos=splitter.pos;
+        // *saveArr[i].pos=splitter.pos;
+        // *saveArr[i].extendMax=splitter.extendMax;
+        // saveArr[i].extendMin=splitter.extendMin;
+        // saveArr[i].valueMax=splitter.valueMax;
+        // saveArr[i].valueMin=splitter.valueMin;
+        // saveArr[i].isVertical=splitter.isVertical;
+
+
+        // if(saveflag==true)
+        // {
+        //     //for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
+        //     std::cout<<"save \n";
+        //     saveflag=false;
+        //     std::cout<<saveflag<<"\n";
+
+        //     // for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
+        //     // {
+        //     //     // undostk.push(gui_splitters[i]);
+        //     // }
         
-        // std::cout<<"i: "<<i<<"\n";
-        // std::cout<<"x: "<<x<<"\n";
-        // std::cout<<"y: "<<y<<"\n";
-        // std::cout<<"w: "<<w<<"\n";
-        // std::cout<<"h: "<<h<<"\n\n";
-    
+        //     // for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
+        //     // {
+        //     //     std::cout<<i<<" : \n";
+        //     // std::cout<<*(undostk.top().valueMin)<<"\n";
+        //     // std::cout<<*(undostk.top().valueMax)<<"\n";
+        //     // std::cout<<*(undostk.top().extendMin)<<"\n";
+        //     // std::cout<<*(undostk.top().extendMax)<<"\n";
+        //     // std::cout<<undostk.top().isVertical<<"\n";
+
+        //     // }
+            
+        // }
+
+
     }
+
+        // if(saveflag==true)
+        // {
+        //     std::cout<<"save \n";
+        //     saveflag=false;
+        //     std::cout<<saveflag<<"\n";
+        
+        //     for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
+        //     {
+        //         std::cout<<i<<" : \n";
+        //         std::cout<<"pos : "<<saveArr[i].pos<<"\n";
+        //         std::cout<<"extenMax : "<<saveArr[i].extendMax<<"\n";
+        //         std::cout<<"extendmin : "<<saveArr[i].extendMin<<"\n";
+
+
+        //     }
+        // }
+
+
 }
 
 std::string next_tooltip = "";
