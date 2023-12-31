@@ -72,7 +72,7 @@ void render_track(Track track)
     } 
     ofile.pop_back();
     ofile += "/SimplEdit_output.mp4"; 
-    std::cout << ofile;
+    std::cout << ofile; 
     pclose(fp);
 
     FILE* fd = fopen(ifile.c_str(), "w");
