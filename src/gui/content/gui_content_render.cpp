@@ -87,12 +87,24 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
         
     }
 
-    // button_tooltip("SplitVideo");
-    // if (button_icon(renderer,icon_extractFrame, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
-    // {
+    button_tooltip("SplitVideo");
+    if (button_icon(renderer,icon_splitvideo, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
+    {
         
-    // }
+    }
 
+    button_tooltip("ExtractFrame");
+    if (button_icon(renderer,icon_extractFrame, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        
+    }
+
+
+    button_tooltip("getgif");
+    if (button_icon(renderer,icon_getgif, x + 4+10+50+50, y + 4+10+50,40,40, 0x404040FF)) 
+    {
+        
+    }
 
 
 }            
