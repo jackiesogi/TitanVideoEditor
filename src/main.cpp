@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 #include <SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <chrono>
 #include <thread>
 #include <iostream>
