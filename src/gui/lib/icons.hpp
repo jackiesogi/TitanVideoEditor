@@ -30,9 +30,11 @@ extern SDL_Texture* icon_getgif;
 extern SDL_Texture* icon_up;
 extern SDL_Texture* icon_video;
 extern SDL_Texture* icon_render;
+extern SDL_Texture* icon_openproject;
 extern SDL_Texture* icon_extractFrame;
 extern SDL_Texture* icon_font;
 extern SDL_Texture* icon_file;
+extern SDL_Texture* icon_newproject;
 extern SDL_Texture* icon_beginning;
 
 extern void init_icons(SDL_Renderer* renderer);

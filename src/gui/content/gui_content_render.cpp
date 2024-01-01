@@ -101,11 +101,16 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
 
 
     button_tooltip("getgif");
-    if (button_icon(renderer,icon_getgif, x + 4+10+50+50, y + 4+10+50,40,40, 0x404040FF)) 
+    if (button_icon(renderer,icon_getgif, x + 4+10+50+50+50, y + 4+10,40,40, 0x404040FF)) 
     {
         
     }
 
+    button_tooltip("new");
+    if (button_icon(renderer,icon_openproject, x + 4+10+50+50+50, y + 4+10+50,40,40, 0x404040FF)) 
+    {
+        
+    }
 
 }            
 

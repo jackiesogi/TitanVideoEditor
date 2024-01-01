@@ -29,9 +29,11 @@ SDL_Texture* icon_getgif = nullptr;
 SDL_Texture* icon_up = nullptr;
 SDL_Texture* icon_video = nullptr;
 SDL_Texture* icon_render = nullptr;
+SDL_Texture* icon_openproject = nullptr;
 SDL_Texture* icon_extractFrame = nullptr;
 SDL_Texture* icon_font = nullptr;
 SDL_Texture* icon_file = nullptr;
+SDL_Texture* icon_newproject = nullptr;
 SDL_Texture* icon_beginning = nullptr;
 
 void init_icons(SDL_Renderer* renderer) {
@@ -59,8 +61,10 @@ void init_icons(SDL_Renderer* renderer) {
     icon_up = create_texture(renderer, images_up_png);
     icon_video = create_texture(renderer, images_video_png);
     icon_render = create_texture(renderer, images_render_png);
+    icon_openproject = create_texture(renderer, images_openproject_png);
     icon_extractFrame = create_texture(renderer, images_extractFrame_png);
     icon_font = create_texture(renderer, images_font_png);
     icon_file = create_texture(renderer, images_file_png);
+    icon_newproject = create_texture(renderer, images_newproject_png);
     icon_beginning = create_texture(renderer, images_beginning_png);
 }
