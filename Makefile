@@ -11,7 +11,7 @@ OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 TOOLS_SRC := $(shell find $(TOOLS_SRCDIR) -type f -name "*.cpp")
 TOOLS_EXEC := $(patsubst $(TOOLS_SRCDIR)/%.cpp,$(TOOLS_BINDIR)/%,$(TOOLS_SRC))
 CFLAGS = -Wall -g -I src -std=c++17
-LDFLAGS := -lSDL2_image -lSDL2_ttf
+LDFLAGS := -lSDL2_image -lSDL2_ttf -lmp4v2
 LIBS =
 
 ifeq ($(OS),Windows_NT)

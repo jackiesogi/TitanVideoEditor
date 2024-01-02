@@ -26,6 +26,7 @@ extern SDL_Texture* icon_magnet;
 extern SDL_Texture* icon_play;
 extern SDL_Texture* icon_pause;
 extern SDL_Texture* icon_hanni;
+extern SDL_Texture* icon_exit;
 extern SDL_Texture* icon_getgif;
 extern SDL_Texture* icon_up;
 extern SDL_Texture* icon_video;

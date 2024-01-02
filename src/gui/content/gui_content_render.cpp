@@ -69,6 +69,25 @@ void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
     if (button_icon(renderer, icon_undo, x + 4+10+20+ 20 +40+ 20 +40 +20, y + 4+10,40,40, 0x404040FF)) 
     {
     }
+    
+    button_tooltip("Exit");
+    if (button_icon(renderer, icon_exit, x + 4+10+20+ 20 +40+ 20 +40 +20+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        if(saveflag)
+        {
+            std::cout<<"ok bye~\n";
+        }
+        else
+        {
+            //zenity
+            //popup window
+
+        }
+
+
+    }
+
+
 
 }
 
