@@ -133,7 +133,7 @@ void render_gui(SDL_Renderer* renderer) {
             }
 
 
-
+        saveflag=0;
 
             // gui_splitters[i]=0.1;
 
