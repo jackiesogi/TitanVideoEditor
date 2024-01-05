@@ -19,6 +19,8 @@ set(SOURCES
 	src/gui/lib/cursors.cpp
 	src/gui/lib/icons.cpp
 	src/gui/lib/images.cpp
+	devs/project.cpp
+	lib/action.cpp
 )
 
 add_executable(file_embed tools/file_embed.cpp)

@@ -6,6 +6,7 @@
 // Any changes to this file will be overwritten during build
 
 SDL_Texture* icon_redo = nullptr;
+SDL_Texture* icon_setspeed = nullptr;
 SDL_Texture* icon_save = nullptr;
 SDL_Texture* icon_edit = nullptr;
 SDL_Texture* icon_no_magnet = nullptr;
@@ -18,6 +19,7 @@ SDL_Texture* icon_sound = nullptr;
 SDL_Texture* icon_remove = nullptr;
 SDL_Texture* icon_up_dir = nullptr;
 SDL_Texture* icon_undo = nullptr;
+SDL_Texture* icon_concat = nullptr;
 SDL_Texture* icon_return = nullptr;
 SDL_Texture* icon_down = nullptr;
 SDL_Texture* icon_splitvideo = nullptr;
@@ -28,6 +30,7 @@ SDL_Texture* icon_hanni = nullptr;
 SDL_Texture* icon_exit = nullptr;
 SDL_Texture* icon_getgif = nullptr;
 SDL_Texture* icon_up = nullptr;
+SDL_Texture* icon_setfilename = nullptr;
 SDL_Texture* icon_video = nullptr;
 SDL_Texture* icon_render = nullptr;
 SDL_Texture* icon_openproject = nullptr;
@@ -39,6 +42,7 @@ SDL_Texture* icon_beginning = nullptr;
 
 void init_icons(SDL_Renderer* renderer) {
     icon_redo = create_texture(renderer, images_redo_png);
+    icon_setspeed = create_texture(renderer, images_setspeed_png);
     icon_save = create_texture(renderer, images_save_png);
     icon_edit = create_texture(renderer, images_edit_png);
     icon_no_magnet = create_texture(renderer, images_no_magnet_png);
@@ -51,6 +55,7 @@ void init_icons(SDL_Renderer* renderer) {
     icon_remove = create_texture(renderer, images_remove_png);
     icon_up_dir = create_texture(renderer, images_up_dir_png);
     icon_undo = create_texture(renderer, images_undo_png);
+    icon_concat = create_texture(renderer, images_concat_png);
     icon_return = create_texture(renderer, images_return_png);
     icon_down = create_texture(renderer, images_down_png);
     icon_splitvideo = create_texture(renderer, images_splitvideo_png);
@@ -61,6 +66,7 @@ void init_icons(SDL_Renderer* renderer) {
     icon_exit = create_texture(renderer, images_exit_png);
     icon_getgif = create_texture(renderer, images_getgif_png);
     icon_up = create_texture(renderer, images_up_png);
+    icon_setfilename = create_texture(renderer, images_setfilename_png);
     icon_video = create_texture(renderer, images_video_png);
     icon_render = create_texture(renderer, images_render_png);
     icon_openproject = create_texture(renderer, images_openproject_png);

@@ -7,6 +7,7 @@
 // Any changes to this file will be overwritten during build
 
 extern SDL_Texture* icon_redo;
+extern SDL_Texture* icon_setspeed;
 extern SDL_Texture* icon_save;
 extern SDL_Texture* icon_edit;
 extern SDL_Texture* icon_no_magnet;
@@ -19,6 +20,7 @@ extern SDL_Texture* icon_sound;
 extern SDL_Texture* icon_remove;
 extern SDL_Texture* icon_up_dir;
 extern SDL_Texture* icon_undo;
+extern SDL_Texture* icon_concat;
 extern SDL_Texture* icon_return;
 extern SDL_Texture* icon_down;
 extern SDL_Texture* icon_splitvideo;
@@ -29,6 +31,7 @@ extern SDL_Texture* icon_hanni;
 extern SDL_Texture* icon_exit;
 extern SDL_Texture* icon_getgif;
 extern SDL_Texture* icon_up;
+extern SDL_Texture* icon_setfilename;
 extern SDL_Texture* icon_video;
 extern SDL_Texture* icon_render;
 extern SDL_Texture* icon_openproject;

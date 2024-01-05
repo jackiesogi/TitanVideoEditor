@@ -28,7 +28,7 @@ class Clip
 class TempLookupTable
 {
 
-    std::map<int ,Clip> table;
+    std::map<std::string ,Clip> table;
 
 
 };

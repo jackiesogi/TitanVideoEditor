@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 #include <SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <chrono>
 #include <thread>
 #include <iostream>
@@ -9,12 +9,15 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
+#include<string>
 
 #include "gui/gui_layout.hpp"
 #include "gui/lib/cursors.hpp"
 #include "gui/lib/icons.hpp"
 #include "gui/render_util.hpp"
 #include "utils.hpp"
+//#include"../devs/project.hpp"
+
 
 #include "libs/portable-file-dialogs.hpp"
 
@@ -129,38 +132,67 @@ bool check_ffmpeg() {
     return true;
 }
 
-int main(int argc, char** argv) {
-    
-    SDL_Window* win=nullptr;
-    if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        std::cout << "SDL could not be initialized: " <<SDL_GetError();
-    }else
-    std::cout << "SDL video system is ready to go\n";
 
-    win = SDL_CreateWindow("C++ SDL2 Window",
-            0,
-            2500,
-            640,
-            480,
-            SDL_WINDOW_SHOWN);
-    bool quit = false;
-    SDL_Event e;
-    while (!quit) {
-        // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            }
-        }
 
-        SDL_Delay(16); // Adjust the delay based on your desired frame rate
+std::string inputfile()
+{
+    FILE* pipe = popen("zenity --entry --text=\"Escribe tu nombre\"", "r");
+    if (!pipe) {
+        std::cerr << "Error opening pipe." << std::endl;
+        //return EXIT_FAILURE;
     }
 
-    SDL_DestroyWindow(win);
-    SDL_Quit();
+    // 读取zenity的输出
+    char buffer[128];
+    std::ostringstream result_stream;
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+        result_stream << buffer;
+    }
+
+    // 关闭zenity进程
+    pclose(pipe);
+
+    // 获取用户输入
+    std::string result = result_stream.str();
+
+    // 打印用户输入
+    std::cout << "您输入的内容是: " << result;
+    return result;
+}
+
+int main(int argc, char** argv) {
     
+    // SDL_Window* win=nullptr;
+    // if(SDL_Init(SDL_INIT_VIDEO) < 0){
+    //     std::cout << "SDL could not be initialized: " <<SDL_GetError();
+    // }else
+    // std::cout << "SDL video system is ready to go\n";
+
+    // win = SDL_CreateWindow("C++ SDL2 Window",
+    //         0,
+    //         2500,
+    //         640,
+    //         480,
+    //         SDL_WINDOW_SHOWN);
+    // bool quit = false;
+    // SDL_Event e;
+    // while (!quit) {
+    //     // Handle events on queue
+    //     while (SDL_PollEvent(&e) != 0) {
+    //         if (e.type == SDL_QUIT) {
+    //             quit = true;
+    //         }
+    //     }
+
+    //     SDL_Delay(16); // Adjust the delay based on your desired frame rate
+    // }
+
+    // SDL_DestroyWindow(win);
+    // SDL_Quit();
     
-    
+    std::string i=inputfile(); 
+    //openfile();
+
     
     
     
