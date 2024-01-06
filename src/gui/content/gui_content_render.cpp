@@ -3,7 +3,7 @@
 #include "gui/gui_layout.hpp"
 #include "main.hpp"
 #include "gui/lib/icons.hpp"
-#include<stack>
+#include "history.hpp"
 #include <iostream>
 
 
@@ -44,7 +44,7 @@ void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
     button_tooltip("save");
     if (button_icon(renderer, icon_save, x + 4+10+30+ 20, y + 4+10,40,40, 0x404040FF)) 
     {
-        saveflag=true;
+        //saveflag=true;
 
         //  for(int i=0;i<sizeof(gui_splitters)/sizeof(GuiLayoutSplitter);i++)
         //  undostk.push(gui_splitters[i]);
@@ -59,15 +59,26 @@ void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
     }
 
     button_tooltip("redo");
+    
     if (button_icon(renderer, icon_redo, x + 4+10+20+ 20 +40+ 20, y + 4+10,40,40, 0x404040FF)) 
     {
-
-
+        redo();
+        for (int i = 0; i < sizeof(gui_splitters) / sizeof(GuiLayoutSplitter); i++) 
+        {
+            GuiLayoutSplitter splitter = gui_splitters[i];
+            *splitter.pos = get_current_state()[i];
+        }
     }
-
     button_tooltip("undo");
+    
     if (button_icon(renderer, icon_undo, x + 4+10+20+ 20 +40+ 20 +40 +20, y + 4+10,40,40, 0x404040FF)) 
     {
+        undo();
+        for (int i = 0; i < sizeof(gui_splitters) / sizeof(GuiLayoutSplitter); i++) 
+        {
+            GuiLayoutSplitter splitter = gui_splitters[i];
+            *splitter.pos = get_current_state()[i];
+        }
     }
 
 }
