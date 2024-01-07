@@ -118,7 +118,7 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
     }
 
     button_tooltip("Set Speed");
-    if (button_icon(renderer,icon_setspeed, x + 4+10+50+50+100, y + 4+10,40,40, 0x404040FF)) 
+    if (button_icon(renderer,icon_setspeed, x + 4+10+50+50+100+50, y + 4+10,40,40, 0x404040FF)) 
     {
         
     }
@@ -137,7 +137,7 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
     }
 
     button_tooltip("setfilename");
-    if (button_icon(renderer,icon_setfilename, x + 4+10+50+50+50, y + 4+10+50,40,40, 0x404040FF)) 
+    if (button_icon(renderer,icon_setfilename, x + 4+10+50+50+50+50, y + 4+10,40,40, 0x404040FF)) 
     {
         
     }
