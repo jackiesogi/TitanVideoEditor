@@ -16,12 +16,12 @@
 #include "gui/lib/icons.hpp"
 #include "gui/render_util.hpp"
 #include "utils.hpp"
-#include"../devs/project.hpp"
+//#include"../devs/project.hpp"
 
 
 #include "libs/portable-file-dialogs.hpp"
 
-
+namespace fs = std::filesystem;
 
 int mouseX;
 int mouseY;
@@ -134,7 +134,7 @@ bool check_ffmpeg() {
 
 std::string inputfile()
 {
-    FILE* pipe = popen("zenity --entry --text=\"input your project name\"", "r");
+    FILE* pipe = popen("zenity --entry --text=\"name your project\"", "r");
     if (!pipe) {
         std::cerr << "Error opening pipe." << std::endl;
         //return EXIT_FAILURE;
@@ -159,16 +159,18 @@ std::string inputfile()
 }
 
 
-void openfile() {
+std::string openfile() 
+{
     FILE* pipe = popen("zenity --file-selection --title=\"select your project\"", "r");
     if (!pipe) {
         std::cerr << "打开管道时发生错误。" << std::endl;
-        return;
+        return NULL;
     }
 
     char buffer[128];
     std::string result = "";
-    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) 
+    {
         result += buffer;
     }
 
@@ -176,16 +178,20 @@ void openfile() {
     pclose(pipe);
 
     // 去除末尾的换行符
-    result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
+     result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
 
+    // 使用文件系统库获取文件夹路径
+    fs::path filePath(result);
+    fs::path folderPath = filePath.parent_path();
     // 打印用户选择的文件路径
-    std::cout << "您选择的文件路径是: " << result << std::endl;
+    std::cout << "您选择的文件路径是: " << folderPath << std::endl;
+    return folderPath;
 }
 
 
 int selectproject()
 {
-    std::string command = "zenity --list --text=\"start\" --radiolist --column=\"\" --column=\"choice\" TRUE \"open a porject\" FALSE \"create a new project\"";
+    std::string command = "zenity --list --text=\"start\" --radiolist --column=\"\" --column=\"choice\" TRUE \"open a project\" FALSE \"create a new project\"";
 
     FILE* pipe = popen(command.c_str(), "r");
     if (!pipe) {
@@ -203,13 +209,26 @@ int selectproject()
     pclose(pipe);
 
 
-    if (result == "select old project\n") {
-        std::cout << "select old project\n";
+    if (result == "open a project\n") {
+        std::cout << "open a project\n";
         return SELECTPROJECT;
-    } else if (result == "create a new porject\n") {
-        std::cout << "create a new porject\n";
+    } else if (result == "create a new project\n") {
+        std::cout << "create a new project\n";
         return NEWPROJECT;
     } 
+}
+
+void createDirectory(const std::string& projectpath,std::string& projectname) 
+{
+    std::string fullPath = projectpath + "/" + projectname;
+    try 
+    {
+        // 尝试创建目录
+        fs::create_directory(fullPath);
+        std::cout << "成功创建目录: " << fullPath << std::endl;
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "创建目录失败: " << e.what() << std::endl;
+    }
 }
 
 
@@ -243,7 +262,7 @@ int main(int argc, char** argv) {
     // SDL_DestroyWindow(win);
     // SDL_Quit();
     int aa=selectproject();
-    std::string project_path;
+    std::string project_path,project_name;
 
     if(true)
     {
@@ -253,8 +272,10 @@ int main(int argc, char** argv) {
             openfile();
             break;
         case NEWPROJECT:
-            openfile();
-            project_path=inputfile();
+            project_path=openfile();
+            std::cout<<"hell \n";
+            project_name=inputfile();
+            createDirectory(project_path,project_name);
             //buildproject(,project_path);
             break;
 

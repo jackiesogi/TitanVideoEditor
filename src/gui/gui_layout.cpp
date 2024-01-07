@@ -8,8 +8,8 @@
 #include <map>
 #include <utility>
 #include <iostream>
-#include<stdlib.h>
-
+#include <stdlib.h>
+#include "history.hpp"
 
 bool saveflag=false;
 // std::stack<GuiLayoutSplitter> undostk;
@@ -97,7 +97,7 @@ void render_gui(SDL_Renderer* renderer) {
 
         // std::cout<<mouseX<<"\n";
         // std::cout<<mouseY<<"\n";
-         std::cout<<*grabbedSplitter->pos<<"\n";
+        // std::cout<<*grabbedSplitter->pos<<"\n";
         // std::cout<<grabbedSplitter->valueMax<<"\n";
         // std::cout<<grabbedSplitter->valueMin<<"\n";
          //*saveArr[k]->pos=*grabbedSplitter->pos;
@@ -105,12 +105,25 @@ void render_gui(SDL_Renderer* renderer) {
         // std::cout<<"k:"<<k<<" "<<"pos : "<<saveArr[k]<<"\n";
          //k++;
     }
+
+    // record the current state
+    float SplitterPositionArray[5];
+    for(int i = 0; i < 6; i++)
+    {
+        SplitterPositionArray[i] = *(gui_splitters[i].pos);
+    }
+    set_current_state_push_old_to_undo(SplitterPositionArray);
+
     for (int i = 0; i < sizeof(gui_splitters) / sizeof(GuiLayoutSplitter); i++) 
     {
         GuiLayoutSplitter splitter = gui_splitters[i];
+        *splitter.pos = get_current_state()[i];
+        std::cout << "get_current_state() returns position at " << *splitter.pos << "\n";
         float limitMin, limitMax;
         int x, y, w, h;
+        // SplitterPositionArray[i] = *gui_splitters[i];
 
+<<<<<<< HEAD
         if(saveflag)
         {
             //*splitter.pos=0.5f;
@@ -138,6 +151,27 @@ void render_gui(SDL_Renderer* renderer) {
             // gui_splitters[i]=0.1;
 
         }
+=======
+        // if(saveflag)
+        // {
+        //     switch(i)
+        //     {
+        //         case 0:
+        //             *gui_splitters[i].pos=0.1f;
+        //             std::cout<<*splitter.pos<<"\n";
+        //             break;
+        //         case 1:
+        //             // set_current_state_push_old_to_undo(SplitterPositionArray);
+        //             *gui_splitters[i].pos=0.2f;
+        //             std::cout<<*splitter.pos<<"\n";
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        //     saveflag = 0;
+        //     // gui_splitters[i]=0.1;
+        // }
+>>>>>>> titan/main
 
         if (splitter.isVertical) {
             x = *splitter.extendMin * (windowWidth - 10) + 5;
@@ -220,8 +254,6 @@ void render_gui(SDL_Renderer* renderer) {
 
         //     }
         // }
-
-
 }
 
 std::string next_tooltip = "";
