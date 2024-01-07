@@ -16,7 +16,7 @@
 #include "gui/lib/icons.hpp"
 #include "gui/render_util.hpp"
 #include "utils.hpp"
-//#include"../devs/project.hpp"
+#include"../devs/project.hpp"
 
 
 #include "libs/portable-file-dialogs.hpp"
@@ -132,11 +132,9 @@ bool check_ffmpeg() {
     return true;
 }
 
-
-
 std::string inputfile()
 {
-    FILE* pipe = popen("zenity --entry --text=\"Escribe tu nombre\"", "r");
+    FILE* pipe = popen("zenity --entry --text=\"input your project name\"", "r");
     if (!pipe) {
         std::cerr << "Error opening pipe." << std::endl;
         //return EXIT_FAILURE;
@@ -159,6 +157,61 @@ std::string inputfile()
     std::cout << "您输入的内容是: " << result;
     return result;
 }
+
+
+void openfile() {
+    FILE* pipe = popen("zenity --file-selection --title=\"select your project\"", "r");
+    if (!pipe) {
+        std::cerr << "打开管道时发生错误。" << std::endl;
+        return;
+    }
+
+    char buffer[128];
+    std::string result = "";
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+        result += buffer;
+    }
+
+    // 关闭zenity进程
+    pclose(pipe);
+
+    // 去除末尾的换行符
+    result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
+
+    // 打印用户选择的文件路径
+    std::cout << "您选择的文件路径是: " << result << std::endl;
+}
+
+
+int selectproject()
+{
+    std::string command = "zenity --list --text=\"start\" --radiolist --column=\"\" --column=\"choice\" TRUE \"open a porject\" FALSE \"create a new project\"";
+
+    FILE* pipe = popen(command.c_str(), "r");
+    if (!pipe) {
+        std::cerr << "無法執行 Zenity 命令\n";
+        return EXIT_FAILURE;
+    }
+
+    char buffer[128];
+    std::string result = "";
+    while (!feof(pipe)) 
+    {
+        if (fgets(buffer, 128, pipe) != NULL)
+            result += buffer;
+    }
+    pclose(pipe);
+
+
+    if (result == "select old project\n") {
+        std::cout << "select old project\n";
+        return SELECTPROJECT;
+    } else if (result == "create a new porject\n") {
+        std::cout << "create a new porject\n";
+        return NEWPROJECT;
+    } 
+}
+
 
 int main(int argc, char** argv) {
     
@@ -189,8 +242,32 @@ int main(int argc, char** argv) {
 
     // SDL_DestroyWindow(win);
     // SDL_Quit();
+    int aa=selectproject();
+    std::string project_path;
+
+    if(true)
+    {
+        switch(aa)
+        {
+        case SELECTPROJECT:
+            openfile();
+            break;
+        case NEWPROJECT:
+            openfile();
+            project_path=inputfile();
+            //buildproject(,project_path);
+            break;
+
+        default:
+            printf("hi \n");
+            break;
+        }
+    }
+
     
-    std::string i=inputfile(); 
+    
+    // std::string i=inputfile();
+
     //openfile();
 
     
