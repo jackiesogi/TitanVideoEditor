@@ -140,21 +140,21 @@ std::string inputfile()
         //return EXIT_FAILURE;
     }
 
-    // 读取zenity的输出
+    // 取得zenity的輸出
     char buffer[128];
     std::ostringstream result_stream;
     while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
         result_stream << buffer;
     }
 
-    // 关闭zenity进程
+    // 關閉zenity行程
     pclose(pipe);
 
-    // 获取用户输入
+    // 取得user輸入
     std::string result = result_stream.str();
 
-    // 打印用户输入
-    std::cout << "您输入的内容是: " << result;
+    // 印出user輸入
+    std::cout << "您輸入的内容是: " << result;
     return result;
 }
 
@@ -163,7 +163,7 @@ std::string openfile()
 {
     FILE* pipe = popen("zenity --file-selection --title=\"select your project\"", "r");
     if (!pipe) {
-        std::cerr << "打开管道时发生错误。" << std::endl;
+        std::cerr << "Failed to open the pipe." << std::endl;
         return NULL;
     }
 
@@ -176,17 +176,17 @@ std::string openfile()
 
     std::cout << result << "\n";
 
-    // 关闭zenity进程
+    // 關閉zenity行程
     pclose(pipe);
 
-    // 去除末尾的换行符
+    // 去除字串尾部的換行符號
      result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
 
-    // 使用文件系统库获取文件夹路径
+    // 使用filesystem取得資料夾路徑
     fs::path filePath(result);
     std::string folderPath = filePath.parent_path().string();
-    // 打印用户选择的文件路径
-    std::cout << "您选择的文件路径是: " << folderPath << std::endl;
+    // 印出user選擇的文件路徑
+    std::cout << "您選擇的文件路徑是: " << folderPath << std::endl;
     return folderPath;
 }
 
@@ -225,11 +225,11 @@ void createDirectory(const std::string& projectpath,std::string& projectname)
     std::string fullPath = projectpath + "/" + projectname;
     try 
     {
-        // 尝试创建目录
+        // 嘗試創建路徑
         fs::create_directory(fullPath);
-        std::cout << "成功创建目录: " << fullPath << std::endl;
+        std::cout << "創建路徑成功: " << fullPath << std::endl;
     } catch (const std::filesystem::filesystem_error& e) {
-        std::cerr << "创建目录失败: " << e.what() << std::endl;
+        std::cerr << "創建路徑失敗: " << e.what() << std::endl;
     }
 }
 
