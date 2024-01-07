@@ -17,13 +17,13 @@ fi
 
 # compiling the shared object
 echo "Compiling..."
-g++ -shared -o libaction.so -fPIC ./action.cpp
+g++ -shared -o libaction.so -fPIC ./lib/action.cpp
 
 # install the shared object to where it should be
 echo "Install the libaction.so ..."
 sudo cp libaction.so /usr/local/lib/libaction.so
 sudo mkdir -p /usr/local/include/simplEngine/
-sudo cp ./action.h /usr/local/include/simplEngine/action.h
+sudo cp ./lib/action.h /usr/local/include/simplEngine/action.h
 sudo ldconfig
 
 # finished!

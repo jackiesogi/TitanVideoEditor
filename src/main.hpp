@@ -34,5 +34,6 @@ enum project{
 
 };
 
+static std::string project_path;
 
 #endif

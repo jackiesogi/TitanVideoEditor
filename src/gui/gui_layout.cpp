@@ -118,40 +118,11 @@ void render_gui(SDL_Renderer* renderer) {
     {
         GuiLayoutSplitter splitter = gui_splitters[i];
         *splitter.pos = get_current_state()[i];
-        std::cout << "get_current_state() returns position at " << *splitter.pos << "\n";
+        //std::cout << "get_current_state() returns position at " << *splitter.pos << "\n";
         float limitMin, limitMax;
         int x, y, w, h;
         // SplitterPositionArray[i] = *gui_splitters[i];
 
-<<<<<<< HEAD
-        if(saveflag)
-        {
-            //*splitter.pos=0.5f;
-
-            switch(i)
-            {
-
-                case 0:
-                    *gui_splitters[i].pos=0.1f;
-                    std::cout<<*splitter.pos<<"\n";
-                    break;
-                case 1:
-                     *gui_splitters[i].pos=0.2f;
-                        std::cout<<*splitter.pos<<"\n";
-                    break;
-                default:
-
-                break;
-
-            }
-
-
-        saveflag=0;
-
-            // gui_splitters[i]=0.1;
-
-        }
-=======
         // if(saveflag)
         // {
         //     switch(i)
@@ -171,7 +142,6 @@ void render_gui(SDL_Renderer* renderer) {
         //     saveflag = 0;
         //     // gui_splitters[i]=0.1;
         // }
->>>>>>> titan/main
 
         if (splitter.isVertical) {
             x = *splitter.extendMin * (windowWidth - 10) + 5;

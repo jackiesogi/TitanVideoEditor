@@ -174,6 +174,8 @@ std::string openfile()
         result += buffer;
     }
 
+    std::cout << result << "\n";
+
     // 关闭zenity进程
     pclose(pipe);
 
@@ -182,7 +184,7 @@ std::string openfile()
 
     // 使用文件系统库获取文件夹路径
     fs::path filePath(result);
-    fs::path folderPath = filePath.parent_path();
+    std::string folderPath = filePath.parent_path().string();
     // 打印用户选择的文件路径
     std::cout << "您选择的文件路径是: " << folderPath << std::endl;
     return folderPath;
@@ -262,14 +264,15 @@ int main(int argc, char** argv) {
     // SDL_DestroyWindow(win);
     // SDL_Quit();
     int aa=selectproject();
-    std::string project_path,project_name;
+    std::string project_name;
 
     if(true)
     {
         switch(aa)
         {
         case SELECTPROJECT:
-            openfile();
+            project_path=openfile();
+            std::cout<<"main "<<project_path<<"\n";
             break;
         case NEWPROJECT:
             project_path=openfile();

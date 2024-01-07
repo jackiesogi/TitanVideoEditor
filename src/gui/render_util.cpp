@@ -2,7 +2,7 @@
 #include "simplEngine/action.h"
 #include "gui/lib/icons.hpp"
 #include "libs/portable-file-dialogs.hpp"
-
+#include "../main.hpp"
 #include <iostream>
 
 int translateX = 0;
@@ -54,41 +54,44 @@ void render_text(SDL_Renderer* renderer, int x, int y, std::string text) {
     }
 }
 
-// void render_track(Track track)
-// {
-//     FILE* fp;
-//     char  buffer[1024]; // read the standard output from zenity file selection dialog
-//     fp = popen("zenity --file-selection --directory --title='Select an directory for exporting'", "r");
-//     std::string ifile = "/home/jck/Videos/simpledit.txt"; // TODO: input path has to be dynamically assign
-//     std::string ofile = ""; // the output mp4 path
+void render_track(Track track)
+{
+    FILE* fp;
+    char  buffer[1024]; // read the standard output from zenity file selection dialog
+    fp = popen("zenity --file-selection --directory --title='Select an directory for exporting'", "r");
+    std::string ifile = "/home/ethan/Desktop/simpledit.txt"; // TODO: input path has to be dynamically assign
+    //std::cout<<"track: "<<project_path<<"\n";
+    //std::string ifile = project_path+ "/simpledit.txt";
+    std::string ofile = ""; // the output mp4 path
 
-//     if(fp == NULL) {
-//         fprintf(stderr, "Failed to execute zenity command.");
-//         exit(1);
-//     }
+    if(fp == NULL) {
+        fprintf(stderr, "Failed to execute zenity command.");
+        exit(1);
+    }
 
-//     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
-//         ofile += buffer;
-//     } 
-//     ofile.pop_back();
-//     ofile += "/SimplEdit_output.mp4"; 
-//     std::cout << ofile;
-//     pclose(fp);
+    while(fgets(buffer, sizeof(buffer), fp) != NULL) {
+        ofile += buffer;
+    } 
+    ofile.pop_back();
+    ofile += "/SimplEdit_output.mp4"; 
+    std::cout << "ofile: " << ofile << "\n";
+    std::cout << "ifile: " << ifile << "\n";
+    pclose(fp);
 
-//     FILE* fd = fopen(ifile.c_str(), "w");
-//     for (const auto& clip : track.clips) {
-//         fprintf(fd, "file '%s'\n", clip.media.c_str());
-//     }
-//     // Close the file
-//     fclose(fd);
+    FILE* fd = fopen(ifile.c_str(), "w");
+    for (const auto& clip : track.clips) {
+        fprintf(fd, "file '%s'\n", clip.media.c_str());
+    }
+    // Close the file
+    fclose(fd);
 
-//     std::string nil = "empty";
-//     Action video(nil);
+    std::string nil = "empty";
+    Action video(nil);
     
-//     int res = video.concat(ifile, ofile);
-//     if (res == 1) {
-//         pfd::message("Titan Video Editor", "Something went wrong during the video exporting\n", pfd::choice::ok, pfd::icon::error);
-//     } else {
-//         pfd::message("Titan Video Editor", "Video has been exported successfully!\n", pfd::choice::ok);
-//     }
-// }
+    int res = video.concat(ifile, ofile);
+    if (res == 1) {
+        pfd::message("Titan Video Editor", "Something went wrong during the video exporting\n", pfd::choice::ok, pfd::icon::error);
+    } else {
+        pfd::message("Titan Video Editor", "Video has been exported successfully!\n", pfd::choice::ok);
+    }
+}
