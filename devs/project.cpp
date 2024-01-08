@@ -15,21 +15,21 @@ std::string inputfile()
         //return EXIT_FAILURE;
     }
 
-    // 读取zenity的输出
+    // 讀取zenity的輸出
     char buffer[128];
     std::ostringstream result_stream;
     while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
         result_stream << buffer;
     }
 
-    // 关闭zenity进程
+    // 關閉zenity行程
     pclose(pipe);
 
-    // 获取用户输入
+    // 讀取user輸入
     string result = result_stream.str();
 
-    // 打印用户输入
-    cout << "您输入的内容是: " << result;
+    // 印出user輸入
+    cout << "您輸入的内容是: " << result;
     return result;
 }
 
@@ -37,7 +37,7 @@ std::string inputfile()
 void openfile() {
     FILE* pipe = popen("zenity --file-selection --title=\"select your project\"", "r");
     if (!pipe) {
-        std::cerr << "打开管道时发生错误。" << std::endl;
+        std::cerr << "Failed to open the pipe." << std::endl;
         return;
     }
 
@@ -47,13 +47,13 @@ void openfile() {
         result += buffer;
     }
 
-    // 关闭zenity进程
+    // 關閉zenity行程
     pclose(pipe);
 
-    // 去除末尾的换行符
+    // 去除字串尾部的換行符號
     result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
 
-    // 打印用户选择的文件路径
+    // 印出user選擇的文件路徑
     std::cout << "您选择的文件路径是: " << result << std::endl;
 }
 
