@@ -80,6 +80,25 @@ void gui_render_homepage(SDL_Renderer* renderer, int x, int y, int w, int h)
             *splitter.pos = get_current_state()[i];
         }
     }
+    
+    button_tooltip("Exit");
+    if (button_icon(renderer, icon_exit, x + 4+10+20+ 20 +40+ 20 +40 +20+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        if(saveflag)
+        {
+            std::cout<<"ok bye~\n";
+        }
+        else
+        {
+            //zenity
+            //popup window
+
+        }
+
+
+    }
+
+
 
 }
 
@@ -98,13 +117,30 @@ void gui_render_render(SDL_Renderer* renderer, int x, int y, int w, int h)
         
     }
 
-    // button_tooltip("SplitVideo");
-    // if (button_icon(renderer,icon_extractFrame, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
-    // {
+    button_tooltip("Set Speed");
+    if (button_icon(renderer,icon_setspeed, x + 4+10+50+50+100+50, y + 4+10,40,40, 0x404040FF)) 
+    {
         
-    // }
+    }
+
+    button_tooltip("ExtractFrame");
+    if (button_icon(renderer,icon_extractFrame, x + 4+10+50+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        
+    }
 
 
+    button_tooltip("concat");
+    if (button_icon(renderer,icon_concat, x + 4+10+50+50+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        render_track(tracks.at(0));
+    }
+
+    button_tooltip("setfilename");
+    if (button_icon(renderer,icon_setfilename, x + 4+10+50+50+50+50, y + 4+10,40,40, 0x404040FF)) 
+    {
+        
+    }
 
 }            
 

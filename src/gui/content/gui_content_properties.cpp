@@ -56,7 +56,9 @@ int propmode_track_selector(SDL_Renderer* renderer, int x, int y, int w, int h) 
         int yPos = y + 24 + i * 32 - properties_scroll;
         if (mouseX >= x && mouseY >= yPos && mouseY >= y + 24 && mouseX < x + w && mouseY < yPos + 32) {
             if (mousePressed) {
-                grabbed_media = current_media_name + "/" + (current_streams[i] == TRACKTYPE_VIDEO ? "v" : "a") + std::to_string(i);
+                grabbed_media = current_media_name;
+                
+                // grabbed_media = current_media_name + "/" + (current_streams[i] == TRACKTYPE_VIDEO ? "v" : "a") + std::to_string(i);
                 grabbed_media_type = current_streams[i];
             }
             tooltip = "Drag on timeline to add";

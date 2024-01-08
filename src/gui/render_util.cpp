@@ -2,7 +2,7 @@
 #include "simplEngine/action.h"
 #include "gui/lib/icons.hpp"
 #include "libs/portable-file-dialogs.hpp"
-
+#include "../main.hpp"
 #include <iostream>
 
 int translateX = 0;
@@ -59,7 +59,9 @@ void render_track(Track track)
     FILE* fp;
     char  buffer[1024]; // read the standard output from zenity file selection dialog
     fp = popen("zenity --file-selection --directory --title='Select an directory for exporting'", "r");
-    std::string ifile = "/home/jck/Videos/simpledit.txt"; // TODO: input path has to be dynamically assign
+    std::string ifile = "/home/ethan/Desktop/simpledit.txt"; // TODO: input path has to be dynamically assign
+    //std::cout<<"track: "<<project_path<<"\n";
+    //std::string ifile = project_path+ "/simpledit.txt";
     std::string ofile = ""; // the output mp4 path
 
     if(fp == NULL) {
@@ -72,7 +74,8 @@ void render_track(Track track)
     } 
     ofile.pop_back();
     ofile += "/SimplEdit_output.mp4"; 
-    std::cout << ofile;
+    std::cout << "ofile: " << ofile << "\n";
+    std::cout << "ifile: " << ifile << "\n";
     pclose(fp);
 
     FILE* fd = fopen(ifile.c_str(), "w");

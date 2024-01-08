@@ -118,7 +118,7 @@ void render_gui(SDL_Renderer* renderer) {
     {
         GuiLayoutSplitter splitter = gui_splitters[i];
         *splitter.pos = get_current_state()[i];
-        std::cout << "get_current_state() returns position at " << *splitter.pos << "\n";
+        //std::cout << "get_current_state() returns position at " << *splitter.pos << "\n";
         float limitMin, limitMax;
         int x, y, w, h;
         // SplitterPositionArray[i] = *gui_splitters[i];

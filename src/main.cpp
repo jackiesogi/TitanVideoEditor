@@ -9,16 +9,19 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
+#include<string>
 
 #include "gui/gui_layout.hpp"
 #include "gui/lib/cursors.hpp"
 #include "gui/lib/icons.hpp"
 #include "gui/render_util.hpp"
 #include "utils.hpp"
+//#include"../devs/project.hpp"
+
 
 #include "libs/portable-file-dialogs.hpp"
 
-
+namespace fs = std::filesystem;
 
 int mouseX;
 int mouseY;
@@ -129,38 +132,168 @@ bool check_ffmpeg() {
     return true;
 }
 
-int main(int argc, char** argv) {
-    
-    SDL_Window* win=nullptr;
-    if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        std::cout << "SDL could not be initialized: " <<SDL_GetError();
-    }else
-    std::cout << "SDL video system is ready to go\n";
-
-    win = SDL_CreateWindow("C++ SDL2 Window",
-            0,
-            2500,
-            640,
-            480,
-            SDL_WINDOW_SHOWN);
-    bool quit = false;
-    SDL_Event e;
-    while (!quit) {
-        // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            }
-        }
-
-        SDL_Delay(16); // Adjust the delay based on your desired frame rate
+std::string inputfile()
+{
+    FILE* pipe = popen("zenity --entry --text=\"name your project\"", "r");
+    if (!pipe) {
+        std::cerr << "Error opening pipe." << std::endl;
+        //return EXIT_FAILURE;
     }
 
-    SDL_DestroyWindow(win);
-    SDL_Quit();
+    // 取得zenity的輸出
+    char buffer[128];
+    std::ostringstream result_stream;
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+        result_stream << buffer;
+    }
+
+    // 關閉zenity行程
+    pclose(pipe);
+
+    // 取得user輸入
+    std::string result = result_stream.str();
+
+    // 印出user輸入
+    std::cout << "您輸入的内容是: " << result;
+    return result;
+}
+
+
+std::string openfile() 
+{
+    FILE* pipe = popen("zenity --file-selection --title=\"select your project\"", "r");
+    if (!pipe) {
+        std::cerr << "Failed to open the pipe." << std::endl;
+        return NULL;
+    }
+
+    char buffer[128];
+    std::string result = "";
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) 
+    {
+        result += buffer;
+    }
+
+    std::cout << result << "\n";
+
+    // 關閉zenity行程
+    pclose(pipe);
+
+    // 去除字串尾部的換行符號
+     result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == '\n'; }), result.end());
+
+    // 使用filesystem取得資料夾路徑
+    fs::path filePath(result);
+    std::string folderPath = filePath.parent_path().string();
+    // 印出user選擇的文件路徑
+    std::cout << "您選擇的文件路徑是: " << folderPath << std::endl;
+    return folderPath;
+}
+
+
+int selectproject()
+{
+    std::string command = "zenity --list --text=\"start\" --radiolist --column=\"\" --column=\"choice\" TRUE \"open a project\" FALSE \"create a new project\"";
+
+    FILE* pipe = popen(command.c_str(), "r");
+    if (!pipe) {
+        std::cerr << "無法執行 Zenity 命令\n";
+        return EXIT_FAILURE;
+    }
+
+    char buffer[128];
+    std::string result = "";
+    while (!feof(pipe)) 
+    {
+        if (fgets(buffer, 128, pipe) != NULL)
+            result += buffer;
+    }
+    pclose(pipe);
+
+
+    if (result == "open a project\n") {
+        std::cout << "open a project\n";
+        return SELECTPROJECT;
+    } else if (result == "create a new project\n") {
+        std::cout << "create a new project\n";
+        return NEWPROJECT;
+    } 
+}
+
+void createDirectory(const std::string& projectpath,std::string& projectname) 
+{
+    std::string fullPath = projectpath + "/" + projectname;
+    try 
+    {
+        // 嘗試創建路徑
+        fs::create_directory(fullPath);
+        std::cout << "創建路徑成功: " << fullPath << std::endl;
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "創建路徑失敗: " << e.what() << std::endl;
+    }
+}
+
+
+int main(int argc, char** argv) {
+    
+    // SDL_Window* win=nullptr;
+    // if(SDL_Init(SDL_INIT_VIDEO) < 0){
+    //     std::cout << "SDL could not be initialized: " <<SDL_GetError();
+    // }else
+    // std::cout << "SDL video system is ready to go\n";
+
+    // win = SDL_CreateWindow("C++ SDL2 Window",
+    //         0,
+    //         2500,
+    //         640,
+    //         480,
+    //         SDL_WINDOW_SHOWN);
+    // bool quit = false;
+    // SDL_Event e;
+    // while (!quit) {
+    //     // Handle events on queue
+    //     while (SDL_PollEvent(&e) != 0) {
+    //         if (e.type == SDL_QUIT) {
+    //             quit = true;
+    //         }
+    //     }
+
+    //     SDL_Delay(16); // Adjust the delay based on your desired frame rate
+    // }
+
+    // SDL_DestroyWindow(win);
+    // SDL_Quit();
+    int aa=selectproject();
+    std::string project_name;
+
+    if(true)
+    {
+        switch(aa)
+        {
+        case SELECTPROJECT:
+            project_path=openfile();
+            std::cout<<"main "<<project_path<<"\n";
+            break;
+        case NEWPROJECT:
+            project_path=openfile();
+            std::cout<<"hell \n";
+            project_name=inputfile();
+            createDirectory(project_path,project_name);
+            //buildproject(,project_path);
+            break;
+
+        default:
+            printf("hi \n");
+            break;
+        }
+    }
+
     
     
-    
+    // std::string i=inputfile();
+
+    //openfile();
+
     
     
     
